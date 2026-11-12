@@ -1,0 +1,49 @@
+Feature_Set,Feature_Set_Name,Num_Features,Model,Accuracy,Accuracy_Std,Precision,Recall,Specificity,F1_Score,F1_Std,ROC_AUC,ROC_AUC_Std,PR_AUC,Brier_Score
+FS-1,Original 16 Predictors,16,Logistic Regression,0.8725,0.0156,0.906,0.9138,0.785,0.9081,0.0105,0.9554,0.0135,0.9802,0.0902
+FS-1,Original 16 Predictors,16,K-Nearest Neighbors,0.8765,0.0266,0.9745,0.844,0.9492,0.9036,0.0225,0.9506,0.0147,0.9701,0.0925
+FS-1,Original 16 Predictors,16,Naive Bayes,0.8725,0.0206,0.9142,0.9024,0.8092,0.9066,0.017,0.9374,0.0203,0.9727,0.1099
+FS-1,Original 16 Predictors,16,Decision Tree,0.9045,0.0341,0.9526,0.9081,0.8983,0.9286,0.0264,0.8863,0.0439,0.9315,0.0961
+FS-1,Original 16 Predictors,16,Random Forest,0.9165,0.0226,0.9434,0.937,0.8733,0.9391,0.0167,0.972,0.0172,0.9878,0.0708
+FS-1,Original 16 Predictors,16,Support Vector Machine,0.8965,0.0361,0.9186,0.9365,0.8117,0.9263,0.0245,0.9696,0.0193,0.9864,0.0663
+FS-1,Original 16 Predictors,16,Gradient Boosting,0.9124,0.0093,0.9443,0.9311,0.8742,0.936,0.0073,0.9565,0.0233,0.9798,0.0769
+FS-1,Original 16 Predictors,16,Artificial Neural Network,0.8883,0.0209,0.925,0.9193,0.8233,0.919,0.0139,0.9542,0.0157,0.9796,0.0926
+FS-2,Original + Symptom_Count,17,Logistic Regression,0.8725,0.0156,0.906,0.9138,0.785,0.9081,0.0105,0.9554,0.0132,0.9802,0.0903
+FS-2,Original + Symptom_Count,17,K-Nearest Neighbors,0.8885,0.0095,0.9683,0.8671,0.9367,0.9147,0.0071,0.9531,0.0222,0.9719,0.088
+FS-2,Original + Symptom_Count,17,Naive Bayes,0.8525,0.0372,0.9057,0.8793,0.795,0.8907,0.0304,0.9285,0.0229,0.969,0.1181
+FS-2,Original + Symptom_Count,17,Decision Tree,0.8845,0.0408,0.9416,0.8908,0.8725,0.9129,0.0329,0.8574,0.0417,0.9143,0.1162
+FS-2,Original + Symptom_Count,17,Random Forest,0.9045,0.0256,0.9287,0.9366,0.8358,0.9313,0.0175,0.9714,0.0205,0.9869,0.0711
+FS-2,Original + Symptom_Count,17,Support Vector Machine,0.8925,0.032,0.9184,0.9308,0.8117,0.9232,0.0213,0.9674,0.0222,0.9848,0.0676
+FS-2,Original + Symptom_Count,17,Gradient Boosting,0.9165,0.0283,0.9415,0.9424,0.8608,0.9399,0.0191,0.9574,0.041,0.9782,0.0713
+FS-2,Original + Symptom_Count,17,Artificial Neural Network,0.8925,0.0269,0.9257,0.9252,0.8242,0.9226,0.0176,0.9535,0.0181,0.9786,0.0895
+FS-3,Original + Core_Symptom_Score,17,Logistic Regression,0.8685,0.0158,0.9012,0.9138,0.7725,0.9056,0.0103,0.9573,0.0129,0.981,0.0903
+FS-3,Original + Core_Symptom_Score,17,K-Nearest Neighbors,0.8885,0.0294,0.969,0.8671,0.9367,0.9147,0.0226,0.9546,0.0215,0.9724,0.0865
+FS-3,Original + Core_Symptom_Score,17,Naive Bayes,0.8726,0.0319,0.9282,0.885,0.8467,0.905,0.0246,0.9363,0.0244,0.9729,0.1153
+FS-3,Original + Core_Symptom_Score,17,Decision Tree,0.8845,0.0385,0.941,0.8909,0.8725,0.9135,0.0297,0.8872,0.0478,0.924,0.1003
+FS-3,Original + Core_Symptom_Score,17,Random Forest,0.9045,0.0337,0.9418,0.9192,0.8733,0.9301,0.0243,0.9681,0.0237,0.9855,0.0719
+FS-3,Original + Core_Symptom_Score,17,Support Vector Machine,0.8965,0.0287,0.9191,0.9366,0.8117,0.9263,0.0189,0.9693,0.0211,0.986,0.0655
+FS-3,Original + Core_Symptom_Score,17,Gradient Boosting,0.8965,0.0263,0.9377,0.9136,0.8617,0.9237,0.02,0.9587,0.0342,0.976,0.0698
+FS-3,Original + Core_Symptom_Score,17,Artificial Neural Network,0.8965,0.0145,0.9325,0.9192,0.8483,0.9245,0.0105,0.9568,0.0185,0.9804,0.0841
+FS-4,Original + Associated_Symptom_Score,17,Logistic Regression,0.8725,0.0156,0.906,0.9138,0.785,0.9081,0.0105,0.9551,0.0137,0.98,0.0903
+FS-4,Original + Associated_Symptom_Score,17,K-Nearest Neighbors,0.8885,0.0202,0.9747,0.8612,0.9492,0.914,0.0166,0.9573,0.0181,0.9762,0.0886
+FS-4,Original + Associated_Symptom_Score,17,Naive Bayes,0.8645,0.02,0.9133,0.8908,0.8092,0.9,0.0176,0.9345,0.0199,0.9715,0.1123
+FS-4,Original + Associated_Symptom_Score,17,Decision Tree,0.9005,0.028,0.9523,0.9022,0.8983,0.9256,0.0218,0.8827,0.0281,0.9295,0.0985
+FS-4,Original + Associated_Symptom_Score,17,Random Forest,0.9005,0.0244,0.9237,0.9368,0.8225,0.9287,0.0163,0.9698,0.0206,0.9866,0.0725
+FS-4,Original + Associated_Symptom_Score,17,Support Vector Machine,0.9005,0.0374,0.9235,0.9365,0.8242,0.929,0.0255,0.9682,0.021,0.9857,0.0673
+FS-4,Original + Associated_Symptom_Score,17,Gradient Boosting,0.8965,0.0225,0.9232,0.9309,0.8233,0.9254,0.0155,0.9575,0.0273,0.9786,0.0776
+FS-4,Original + Associated_Symptom_Score,17,Artificial Neural Network,0.9044,0.0078,0.9373,0.925,0.8608,0.9302,0.0058,0.9568,0.0143,0.9799,0.0821
+FS-5,Original + All Engineered Features,19,Logistic Regression,0.8685,0.0158,0.9012,0.9138,0.7725,0.9056,0.0103,0.9573,0.0129,0.981,0.0905
+FS-5,Original + All Engineered Features,19,K-Nearest Neighbors,0.8965,0.0258,0.9694,0.8787,0.9367,0.9214,0.0191,0.9535,0.0196,0.9723,0.086
+FS-5,Original + All Engineered Features,19,Naive Bayes,0.8607,0.0326,0.9259,0.8676,0.8458,0.8955,0.025,0.9271,0.0298,0.969,0.1289
+FS-5,Original + All Engineered Features,19,Decision Tree,0.8965,0.0386,0.9352,0.9138,0.8592,0.9238,0.0286,0.8893,0.0415,0.9242,0.0962
+FS-5,Original + All Engineered Features,19,Random Forest,0.9085,0.0291,0.9438,0.9249,0.8742,0.9332,0.0208,0.9688,0.021,0.9863,0.0739
+FS-5,Original + All Engineered Features,19,Support Vector Machine,0.9045,0.0337,0.9242,0.9424,0.8242,0.932,0.0228,0.9682,0.0224,0.9851,0.0675
+FS-5,Original + All Engineered Features,19,Gradient Boosting,0.9125,0.0385,0.9302,0.9479,0.8358,0.9374,0.0272,0.9525,0.039,0.9697,0.078
+FS-5,Original + All Engineered Features,19,Artificial Neural Network,0.8924,0.0531,0.9097,0.9422,0.7858,0.9242,0.0358,0.9519,0.0256,0.9773,0.0849
+FS-6,Selected Subset,9,Logistic Regression,0.8526,0.0201,0.894,0.8965,0.7592,0.8934,0.014,0.9504,0.0081,0.9784,0.0957
+FS-6,Selected Subset,9,K-Nearest Neighbors,0.8924,0.0101,0.9431,0.9022,0.8742,0.92,0.0102,0.9491,0.0173,0.9655,0.0832
+FS-6,Selected Subset,9,Naive Bayes,0.8725,0.0156,0.9191,0.8965,0.8225,0.9062,0.0133,0.9409,0.0226,0.974,0.1147
+FS-6,Selected Subset,9,Decision Tree,0.8725,0.0156,0.9353,0.879,0.8608,0.9044,0.0134,0.8765,0.0389,0.9232,0.1081
+FS-6,Selected Subset,9,Random Forest,0.8965,0.0145,0.9264,0.9254,0.835,0.9247,0.0119,0.9505,0.0205,0.9778,0.0824
+FS-6,Selected Subset,9,Support Vector Machine,0.8965,0.0145,0.9087,0.9484,0.785,0.9266,0.0099,0.9575,0.0082,0.9813,0.0821
+FS-6,Selected Subset,9,Gradient Boosting,0.9004,0.0283,0.9271,0.9314,0.835,0.9273,0.0227,0.9335,0.0135,0.9716,0.0892
+FS-6,Selected Subset,9,Artificial Neural Network,0.8764,0.0237,0.9166,0.9082,0.81,0.9094,0.0203,0.9644,0.0097,0.9846,0.0894

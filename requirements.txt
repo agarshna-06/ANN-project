@@ -1,0 +1,16 @@
+# Diabetes Prediction System - Python Dependencies
+# SRM Institute of Science and Technology - CSE (AIML)
+# Agarshna R (RA2411026050061)
+
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+openpyxl>=3.1.0
+joblib>=1.3.0
+pyarrow>=14.0.0
+streamlit>=1.28.0
+
+

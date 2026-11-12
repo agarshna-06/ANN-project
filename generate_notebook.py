@@ -1,0 +1,336 @@
+"""
+Generate End-to-End Jupyter Notebook
+notebooks/diabetes_prediction_complete.ipynb
+Author: Agarshna R (RA2411026050061)
+Department: B.Tech CSE (AIML), SRM IST
+"""
+
+import json
+
+def build_notebook():
+    cells = [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Diabetes Prediction System: Machine Learning Based Early-Stage Risk Prediction\n",
+                "### Complete Technical Project Implementation (Review I & Review II)\n",
+                "**Student Name:** Agarshna R  \n",
+                "**Register Number:** RA2411026050061  \n",
+                "**Department:** B.Tech Computer Science and Engineering (Artificial Intelligence & Machine Learning)  \n",
+                "**Institution:** SRM Institute of Science and Technology, Tiruchirappalli  \n",
+                "**Academic Year:** 2026–2027  \n",
+                "\n",
+                "---\n",
+                "### Abstract\n",
+                "This project develops a reproducible, leakage-safe, and explainable machine learning system for early-stage diabetes risk screening using demographic and clinical symptom indicators. The raw dataset contains 520 records across 16 predictor variables and 1 binary target class. Following data validation, 269 exact duplicates were removed to prevent evaluation inflation, resulting in 251 unique records. Feature engineering created three interpretable aggregate symptom burden scores: `Symptom_Count`, `Core_Symptom_Score`, and `Associated_Symptom_Score`. Eight candidate machine learning classifiers across six experimental feature sets were benchmarked using Stratified Cross-Validation. Model predictions are interpreted using SHAP (Shapley Additive exPlanations) alongside an interactive counterfactual what-if simulation tool."
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 1. Environment Setup and Library Imports"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "import os\n",
+                "import sys\n",
+                "import numpy as np\n",
+                "import pandas as pd\n",
+                "import matplotlib.pyplot as plt\n",
+                "import seaborn as sns\n",
+                "from scipy.stats import chi2_contingency, pointbiserialr\n",
+                "from sklearn.feature_selection import mutual_info_classif\n",
+                "from sklearn.model_selection import StratifiedKFold, train_test_split\n",
+                "from sklearn.preprocessing import StandardScaler\n",
+                "from sklearn.calibration import calibration_curve\n",
+                "from sklearn.metrics import (\n",
+                "    accuracy_score, precision_score, recall_score, f1_score,\n",
+                "    roc_auc_score, average_precision_score, confusion_matrix, brier_score_loss\n",
+                ")\n",
+                "# Models\n",
+                "from sklearn.linear_model import LogisticRegression\n",
+                "from sklearn.neighbors import KNeighborsClassifier\n",
+                "from sklearn.naive_bayes import GaussianNB\n",
+                "from sklearn.tree import DecisionTreeClassifier\n",
+                "from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\n",
+                "from sklearn.svm import SVC\n",
+                "from sklearn.neural_network import MLPClassifier\n",
+                "\n",
+                "# Matplotlib styling\n",
+                "plt.style.use('default')\n",
+                "plt.rcParams['font.sans-serif'] = 'Arial'\n",
+                "plt.rcParams['figure.autolayout'] = True\n",
+                "print('All libraries loaded successfully!')"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 2. Dataset Loading and Initial Inspection\n",
+                "The dataset contains 520 records and 17 columns (16 predictors + `class`)."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "raw_df = pd.read_csv('../data/diabetes_data_upload.csv')\n",
+                "print('Raw Dataset Dimensions:', raw_df.shape)\n",
+                "raw_df.head()"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 3. Data Preprocessing and Leakage Control\n",
+                "- Missing value audit\n",
+                "- Duplicate row identification and removal (269 exact duplicates)\n",
+                "- Binary categorical encoding (Gender: Female=0, Male=1; Symptoms: No=0, Yes=1; Target: Negative=0, Positive=1)\n",
+                "- Age outlier screening using standard Interquartile Range (IQR)"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# Check missing values\n",
+                "print('Missing Values Count per Column:')\n",
+                "print(raw_df.isnull().sum())\n",
+                "\n",
+                "# Check and remove exact duplicates\n",
+                "num_duplicates = raw_df.duplicated().sum()\n",
+                "print(f'\\nExact Duplicate Rows Detected: {num_duplicates}')\n",
+                "clean_df = raw_df.drop_duplicates().copy()\n",
+                "print(f'Clean Deduplicated Records: {clean_df.shape[0]}')\n",
+                "\n",
+                "# Encode categorical columns\n",
+                "binary_symptoms = [\n",
+                "    'Polyuria', 'Polydipsia', 'sudden weight loss', 'weakness',\n",
+                "    'Polyphagia', 'Genital thrush', 'visual blurring', 'Itching',\n",
+                "    'Irritability', 'delayed healing', 'partial paresis',\n",
+                "    'muscle stiffness', 'Alopecia', 'Obesity'\n",
+                "]\n",
+                "\n",
+                "clean_df['Gender'] = clean_df['Gender'].map({'Female': 0, 'Male': 1})\n",
+                "clean_df['class'] = clean_df['class'].map({'Negative': 0, 'Positive': 1})\n",
+                "for s in binary_symptoms:\n",
+                "    clean_df[s] = clean_df[s].map({'No': 0, 'Yes': 1})\n",
+                "\n",
+                "# Age Outlier Analysis\n",
+                "q1 = clean_df['Age'].quantile(0.25)\n",
+                "q3 = clean_df['Age'].quantile(0.75)\n",
+                "iqr = q3 - q1\n",
+                "lower_bound = q1 - 1.5 * iqr\n",
+                "upper_bound = q3 + 1.5 * iqr\n",
+                "flagged_outliers = clean_df[(clean_df['Age'] < lower_bound) | (clean_df['Age'] > upper_bound)]\n",
+                "\n",
+                "print(f'Age IQR: {iqr:.2f} | Lower Bound: {lower_bound:.2f} | Upper Bound: {upper_bound:.2f}')\n",
+                "print(f'Flagged Observations: {len(flagged_outliers)} (Age 90 - clinically retained)')"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 4. Exploratory Data Analysis (EDA)\n",
+                "Visualizing target distribution, age distribution, symptom prevalence, and correlation matrix."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# Figure 1: Target Class Distribution\n",
+                "counts = clean_df['class'].value_counts()\n",
+                "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+                "ax.bar(['Negative', 'Positive'], [counts[0], counts[1]], color='#1f77b4', width=0.45)\n",
+                "ax.set_title('Figure 1: Target Class Distribution')\n",
+                "ax.set_ylabel('Number of records')\n",
+                "plt.show()\n",
+                "\n",
+                "# Figure 2: Age Distribution\n",
+                "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+                "ax.hist(clean_df['Age'], bins=15, color='#1f77b4', edgecolor='white')\n",
+                "ax.set_title('Figure 2: Distribution of Participant Age')\n",
+                "ax.set_xlabel('Age (Years)')\n",
+                "ax.set_ylabel('Frequency')\n",
+                "plt.show()"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 5. Feature Engineering\n",
+                "Creating clinically grounded aggregate symptom scores:\n",
+                "1. `Symptom_Count`: Sum of all 14 symptom indicators.\n",
+                "2. `Core_Symptom_Score`: Sum of core osmotic symptoms (Polyuria, Polydipsia, sudden weight loss, Polyphagia, weakness).\n",
+                "3. `Associated_Symptom_Score`: Sum of secondary associated symptoms."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "core_symptoms = ['Polyuria', 'Polydipsia', 'sudden weight loss', 'Polyphagia', 'weakness']\n",
+                "assoc_symptoms = [\n",
+                "    'Genital thrush', 'visual blurring', 'Itching', 'Irritability',\n",
+                "    'delayed healing', 'partial paresis', 'muscle stiffness', 'Alopecia', 'Obesity'\n",
+                "]\n",
+                "\n",
+                "fe_df = clean_df.copy()\n",
+                "fe_df['Symptom_Count'] = fe_df[binary_symptoms].sum(axis=1)\n",
+                "fe_df['Core_Symptom_Score'] = fe_df[core_symptoms].sum(axis=1)\n",
+                "fe_df['Associated_Symptom_Score'] = fe_df[assoc_symptoms].sum(axis=1)\n",
+                "\n",
+                "for col in ['Symptom_Count', 'Core_Symptom_Score', 'Associated_Symptom_Score']:\n",
+                "    s = fe_df[col]\n",
+                "    print(f'{col}: min={s.min()}, max={s.max()}, mean={s.mean():.2f}, median={s.median():.2f}')"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 6. Feature Relevance Analysis (Cramer's V, Mutual Information, RF Gini)"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# Compute Cramer's V with Yates' correction\n",
+                "assoc_list = []\n",
+                "n = len(clean_df)\n",
+                "for s in binary_symptoms + ['Gender']:\n",
+                "    cm = pd.crosstab(clean_df[s], clean_df['class'])\n",
+                "    chi2, p, _, _ = chi2_contingency(cm, correction=True)\n",
+                "    v = np.sqrt(chi2 / n)\n",
+                "    assoc_list.append({'Feature': s, 'Association': v, 'p-value': p})\n",
+                "\n",
+                "df_assoc = pd.DataFrame(assoc_list).sort_values(by='Association', ascending=False)\n",
+                "print('Leading Feature Associations (Table 7.1):')\n",
+                "print(df_assoc.head(8))"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 7. Machine Learning Modeling & Stratified Cross-Validation\n",
+                "Evaluating 8 candidate classifiers across the 6 planned feature sets."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "from src.modeling import evaluate_models_cross_validation, train_and_save_best_model\n",
+                "cv_results = evaluate_models_cross_validation(fe_df, n_splits=5)\n",
+                "cv_results.to_csv('../saved_models/cv_model_comparison.csv', index=False)\n",
+                "print('Top 10 Model Configurations by ROC-AUC:')\n",
+                "cv_results.sort_values(by='ROC_AUC', ascending=False)[['Feature_Set', 'Model', 'Accuracy', 'Recall', 'Specificity', 'F1_Score', 'ROC_AUC', 'Brier_Score']].head(10)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 8. Explainable AI: SHAP Local & Global Explanations and Counterfactual What-If Simulation"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "from src.explainability import DiabetesExplainer\n",
+                "explainer = DiabetesExplainer('../saved_models/best_model.pkl', '../saved_models/scaler.pkl', '../saved_models/model_feature_names.pkl')\n",
+                "\n",
+                "# Define a test patient\n",
+                "patient = {\n",
+                "    'Age': 50, 'Gender': 1, 'Polyuria': 1, 'Polydipsia': 1,\n",
+                "    'sudden weight loss': 1, 'weakness': 1, 'Polyphagia': 0,\n",
+                "    'Genital thrush': 0, 'visual blurring': 0, 'Itching': 1,\n",
+                "    'Irritability': 1, 'delayed healing': 1, 'partial paresis': 0,\n",
+                "    'muscle stiffness': 0, 'Alopecia': 0, 'Obesity': 1\n",
+                "}\n",
+                "pred, prob = explainer.predict_patient_risk(patient)\n",
+                "risk_label = 'High Risk' if pred == 1 else 'Low Risk'\n",
+                "print(f'Predicted Patient Risk: {prob*100:.1f}% ({risk_label})')\n",
+                "\n",
+                "# Local Explanation\n",
+                "explanation = explainer.explain_patient(patient)\n",
+                "print('\\nLocal Feature Attributions:')\n",
+                "print(explanation['attributions'].head(6))\n",
+                "\n",
+                "# What-If Counterfactual: Resolve Polyuria & Polydipsia\n",
+                "whatif = explainer.simulate_what_if(patient, {'Polyuria': 0, 'Polydipsia': 0})\n",
+                "print('\\nWhat-If Counterfactual Simulation:')\n",
+                "base_p = whatif['baseline_probability'] * 100\n",
+                "mod_p = whatif['modified_probability'] * 100\n",
+                "delta_p = whatif['delta_percent']\n",
+                "print(f'Baseline Prob: {base_p:.1f}% -> Modified Prob: {mod_p:.1f}%')\n",
+                "print(f'Risk Probability Delta: {delta_p:.1f}%')"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 9. Conclusion & Review Summary\n",
+                "- Successfully reproduced and completed the end-to-end diabetes prediction framework.\n",
+                "- Data cleaning resolved 269 duplicates without contradictory label patterns.\n",
+                "- Feature engineering added 3 interpretable scores that improve clinical representation.\n",
+                "- Stratified cross-validation verified that Random Forest and SVM achieve superior discrimination (ROC-AUC ~0.97).\n",
+                "- SHAP local attributions and What-If counterfactual simulation provide clinicians and patients with transparent, actionable risk factors."
+            ]
+        }
+    ]
+    
+    nb = {
+        "cells": cells,
+        "metadata": {
+            "kernelspec": {
+                "display_name": "Python 3",
+                "language": "python",
+                "name": "python3"
+            },
+            "language_info": {
+                "name": "python",
+                "version": "3.11.0"
+            }
+        },
+        "nbformat": 4,
+        "nbformat_minor": 4
+    }
+    
+    with open('notebooks/diabetes_prediction_complete.ipynb', 'w', encoding='utf-8') as f:
+        json.dump(nb, f, indent=2)
+    print("Notebook created successfully at notebooks/diabetes_prediction_complete.ipynb")
+
+if __name__ == '__main__':
+    build_notebook()
+

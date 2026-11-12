@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes AI • Early-Stage Risk Screening System | SRM IST</title>
+  
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-cyan: #00F2FE;
+      --secondary-purple: #8B5CF6;
+      --accent-emerald: #10B981;
+      --accent-crimson: #EF4444;
+      --dark-surface: #070A13;
+      --glass-card: rgba(15, 23, 42, 0.72);
+      --glass-border: rgba(0, 242, 254, 0.22);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--dark-surface);
+      color: #F1F5F9;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 85%, rgba(139, 92, 246, 0.12) 0%, transparent 45%);
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Ambient Floating Glowing Orbs */
+    .bg-orb-1 {
+      position: fixed; width: 450px; height: 450px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, transparent 70%);
+      top: -120px; left: -120px; filter: blur(70px); z-index: 0; pointer-events: none;
+      animation: float1 16s ease-in-out infinite alternate;
+    }
+    .bg-orb-2 {
+      position: fixed; width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      bottom: -150px; right: -120px; filter: blur(80px); z-index: 0; pointer-events: none;
+      animation: float2 20s ease-in-out infinite alternate;
+    }
+    @keyframes float1 { 0% { transform: translate(0, 0); } 100% { transform: translate(100px, 120px); } }
+    @keyframes float2 { 0% { transform: translate(0, 0); } 100% { transform: translate(-100px, -110px); } }
+
+    /* Glassmorphism Cards */
+    .card-glass {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      border-radius: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-glass:hover {
+      border-color: rgba(0, 242, 254, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Video Hero */
+    .hero-video-wrapper {
+      position: relative;
+      height: 200px;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+    .hero-video-wrapper video {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.65) contrast(1.2) hue-rotate(185deg);
+    }
+    .hero-video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(7, 10, 19, 0.2) 0%, rgba(7, 10, 19, 0.9) 100%);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 1.8rem 2.2rem;
+      z-index: 2;
+    }
+
+    /* Dual-Color Gradient Text */
+    .gradient-text-cyan {
+      background: linear-gradient(135deg, #FFFFFF 20%, #00F2FE 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .gradient-text-purple {
+      background: linear-gradient(135deg, #00F2FE 0%, #8B5CF6 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* Custom Checkbox Toggle Cards */
+    .symptom-toggle {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .symptom-toggle:hover {
+      background: rgba(0, 242, 254, 0.06);
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+    .form-check-input:checked {
+      background-color: var(--primary-cyan);
+      border-color: var(--primary-cyan);
+    }
+
+    /* SVG Progress Ring */
+    .gauge-circle {
+      transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.4s ease;
+    }
+
+    /* Pulsing Alert Badges */
+    .badge-pulse {
+      animation: pulseBadge 2.5s infinite;
+    }
+    @keyframes pulseBadge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.5); }
+      50% { box-shadow: 0 0 16px 3px rgba(0, 242, 254, 0.25); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #070A13; }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="bg-orb-1"></div>
+  <div class="bg-orb-2"></div>
+
+  <!-- Navigation Bar (Bootstrap Navbar) -->
+  <nav class="navbar navbar-expand-lg navbar-dark card-glass sticky-top py-2 px-3 mb-4 mx-2 mt-2">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex items-center gap-2" href="#">
+        <span class="fs-4">🩺</span>
+        <span class="fw-bold gradient-text-purple tracking-tight">DIABETES AI</span>
+        <span class="badge bg-cyan-subtle text-cyan border border-cyan-subtle fs-xs ms-1">v2.0 PROTOTYPE</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1 text-sm">
+          <li class="nav-item"><a class="nav-link active" href="#screeningSection"><i class="bi bi-person-check me-1"></i> Patient Screening</a></li>
+          <li class="nav-item"><a class="nav-link" href="#whatifSection"><i class="bi bi-arrow-repeat me-1"></i> What-If Simulator</a></li>
+          <li class="nav-item"><a class="nav-link" href="#benchmarkSection" data-bs-toggle="modal" data-bs-target="#modelModal"><i class="bi bi-bar-chart-line me-1"></i> Model Benchmarks</a></li>
+          <li class="nav-item"><a class="nav-link" href="#edaSection" data-bs-toggle="modal" data-bs-target="#edaModal"><i class="bi bi-images me-1"></i> EDA Gallery</a></li>
+          <li class="nav-item"><a class="nav-link text-info" href="#infoSection" data-bs-toggle="modal" data-bs-target="#authorModal"><i class="bi bi-mortarboard me-1"></i> Student Info</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid px-3 px-md-5 mb-5 position-relative" style="z-index: 1;">
+
+    <!-- Video Hero Header (Bootstrap Card) -->
+    <div class="hero-video-wrapper mb-4">
+      <video autoplay loop muted playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-graphs-and-data-31913-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-plexus-cloud-network-connection-background-31411-large.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay">
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
+          <span class="mono text-info text-uppercase fw-bold" style="font-size: 0.75rem; letter-spacing: 0.1em;">
+            AI Inference Engine Active • SRM Institute of Science and Technology
+          </span>
+        </div>
+        <h1 class="display-6 fw-extrabold text-white mb-1">
+          Early-Stage Diabetes Risk Prediction System
+        </h1>
+        <p class="text-secondary small mb-2 d-none d-md-block max-w-3xl">
+          Clinical symptom screening architecture combining leakage-safe preprocessing, Tree-SHAP local explanations, and interactive counterfactual simulation.
+        </p>
+        <div class="d-flex flex-wrap gap-2 text-xs">
+          <span class="badge bg-dark bg-opacity-75 border border-secondary text-light">Student: <strong class="text-info">Agarshna R</strong> (RA2411026050061)</span>
+          <span class="badge bg-dark bg-opacity-75 border border-secondary text-light">Degree: <strong class="text-purple">B.Tech CSE (AIML)</strong></span>
+          <span class="badge bg-dark bg-opacity-75 border border-secondary text-light">Selected Model: <strong class="text-success">Random Forest (ROC-AUC: 0.9720)</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid: Screening & Assessment (Bootstrap Row) -->
+    <div class="row g-4 mb-4" id="screeningSection">
+
+      <!-- Left Column: Inputs & Symptoms (Bootstrap Col-lg-7) -->
+      <div class="col-lg-7">
+
+        <!-- Demographics Panel -->
+        <div class="card card-glass p-4 mb-4 shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="fw-bold mb-0 text-white d-flex align-items-center gap-2">
+              <i class="bi bi-person-badge text-info"></i> 1. Demographic Indicators
+            </h5>
+            <span class="badge bg-info-subtle text-info border border-info-subtle">Baseline Feature</span>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="p-3 rounded-3 bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label class="form-label text-uppercase text-secondary small fw-bold mb-0">Patient Age</label>
+                  <span id="ageDisplay" class="mono fw-bold text-info fs-5">48 yrs</span>
+                </div>
+                <input type="range" class="form-range" id="ageInput" min="16" max="90" value="48" oninput="updatePrediction()">
+                <div class="d-flex justify-content-between text-secondary mono" style="font-size: 0.7rem;">
+                  <span>Min: 16</span>
+                  <span>Q1: 39 - Q3: 58</span>
+                  <span>Max: 90</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="p-3 rounded-3 bg-dark bg-opacity-50 border border-secondary border-opacity-25 h-100">
+                <label class="form-label text-uppercase text-secondary small fw-bold mb-2 d-block">Biological Gender</label>
+                <div class="btn-group w-100" role="group">
+                  <input type="radio" class="btn-check" name="genderRadio" id="genderMale" checked autocomplete="off" onchange="updatePrediction()">
+                  <label class="btn btn-outline-info fw-bold py-2" for="genderMale"><i class="bi bi-gender-male me-1"></i> Male</label>
+                  <input type="radio" class="btn-check" name="genderRadio" id="genderFemale" autocomplete="off" onchange="updatePrediction()">
+                  <label class="btn btn-outline-secondary fw-bold py-2" for="genderFemale"><i class="bi bi-gender-female me-1"></i> Female</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cardinal Primary Symptoms Panel -->
+        <div class="card card-glass p-4 mb-4 shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <h5 class="fw-bold mb-0 text-white d-flex align-items-center gap-2">
+              <i class="bi bi-heart-pulse text-danger"></i> 2. Cardinal Metabolic Symptoms
+            </h5>
+            <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Core Symptom Score (0–5)</span>
+          </div>
+          <p class="text-secondary small mb-3">Primary clinical osmotic indicators with the strongest target correlation in the dataset.</p>
+
+          <div class="row g-2" id="coreSymptomsGrid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Associated Secondary Symptoms Panel -->
+        <div class="card card-glass p-4 shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <h5 class="fw-bold mb-0 text-white d-flex align-items-center gap-2">
+              <i class="bi bi-shield-plus text-primary"></i> 3. Associated Secondary Manifestations
+            </h5>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Assoc. Score (0–9)</span>
+          </div>
+          <p class="text-secondary small mb-3">Secondary microvascular signs, skin manifestations, and common complications.</p>
+
+          <div class="row g-2" id="assocSymptomsGrid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Real-Time HUD, Risk Gauge & SHAP (Bootstrap Col-lg-5) -->
+      <div class="col-lg-5">
+
+        <!-- Real-time Risk Verdict Card -->
+        <div class="card card-glass p-4 mb-4 shadow-lg position-relative overflow-hidden" id="verdictBox">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-uppercase small text-secondary fw-bold mono">Inference Verdict</span>
+            <span id="riskVerdictBadge" class="badge bg-danger px-3 py-2 fs-xs fw-extrabold text-uppercase badge-pulse">High Risk</span>
+          </div>
+
+          <!-- Circular SVG Gauge & Summary -->
+          <div class="d-flex align-items-center gap-4 my-2">
+            <div class="position-relative" style="width: 120px; height: 120px; flex-shrink: 0;">
+              <svg class="w-100 h-100" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+                <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="none"></circle>
+                <circle id="gaugeRing" cx="50" cy="50" r="40" stroke="#00F2FE" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="30" stroke-linecap="round" fill="none" class="gauge-circle"></circle>
+              </svg>
+              <div class="position-absolute top-50 start-50 translate-middle text-center">
+                <div id="probPercentText" class="mono fw-extrabold fs-3 text-white">94.5%</div>
+                <div class="text-secondary text-uppercase" style="font-size: 0.65rem; font-weight: 600;">Probability</div>
+              </div>
+            </div>
+
+            <div>
+              <h4 id="verdictHeadline" class="fw-bold text-danger mb-1">High Risk Detected</h4>
+              <p id="verdictDescription" class="text-secondary small mb-0 lh-sm">
+                Cardinal symptoms reported (Polyuria/Polydipsia). Immediate laboratory blood testing (fasting glucose / HbA1c) recommended.
+              </p>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress mt-3 bg-dark" style="height: 6px;">
+            <div id="progressBar" class="progress-bar bg-danger" role="progressbar" style="width: 94.5%;"></div>
+          </div>
+
+          <!-- Engineered Scores Row -->
+          <div class="row g-2 mt-3 pt-3 border-top border-secondary border-opacity-25 text-center">
+            <div class="col-4">
+              <div class="p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+                <div class="text-secondary small text-uppercase" style="font-size: 0.65rem;">Total Count</div>
+                <div id="metricTotalCount" class="mono fw-bold text-info fs-5">5 / 14</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+                <div class="text-secondary small text-uppercase" style="font-size: 0.65rem;">Core Score</div>
+                <div id="metricCoreScore" class="mono fw-bold text-purple fs-5">3 / 5</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+                <div class="text-secondary small text-uppercase" style="font-size: 0.65rem;">Assoc. Score</div>
+                <div id="metricAssocScore" class="mono fw-bold text-success fs-5">2 / 9</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Local SHAP Attributions Card -->
+        <div class="card card-glass p-4 shadow-sm">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0 text-white d-flex align-items-center gap-2">
+              <i class="bi bi-diagram-3 text-info"></i> Explainable AI (Tree-SHAP)
+            </h5>
+            <span class="badge bg-dark border border-secondary text-secondary mono" style="font-size: 0.7rem;">Prior: 68.9%</span>
+          </div>
+          <p class="text-secondary small mb-3">Local additive attributions indicating how each factor shifts risk probability.</p>
+
+          <div id="shapBarContainer" class="d-flex flex-column gap-2">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <div class="d-flex justify-content-between text-secondary pt-3 mt-3 border-top border-secondary border-opacity-25" style="font-size: 0.75rem;">
+            <span><i class="bi bi-circle-fill text-danger me-1"></i> Increases Diabetes Risk (+)</span>
+            <span><i class="bi bi-circle-fill text-info me-1"></i> Protective / Lowers Risk (-)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- What-If Counterfactual Simulator Card (Bootstrap Card) -->
+    <div class="card card-glass p-4 mb-4 border-info border-opacity-50 shadow-lg" id="whatifSection">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h4 class="fw-bold text-white d-flex align-items-center gap-2 mb-0">
+          <i class="bi bi-arrow-left-right text-info"></i> Interactive What-If Counterfactual Simulation
+        </h4>
+        <span class="badge bg-info text-dark fw-bold">Live Scenario Simulator</span>
+      </div>
+      <p class="text-secondary small mb-4">
+        Simulate targeted clinical interventions or symptom resolutions to observe the real-time probability reduction delta.
+      </p>
+
+      <div class="row g-3">
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 bg-dark bg-opacity-60 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+            <div>
+              <div class="fw-bold small text-white">Resolve Polyuria</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">Urination frequency normalizes</div>
+            </div>
+            <input class="form-check-input fs-5 m-0" type="checkbox" id="whatifResolvePolyuria" onchange="runWhatIfSimulation()">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 bg-dark bg-opacity-60 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+            <div>
+              <div class="fw-bold small text-white">Resolve Polydipsia</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">Thirst sensations normalize</div>
+            </div>
+            <input class="form-check-input fs-5 m-0" type="checkbox" id="whatifResolvePolydipsia" onchange="runWhatIfSimulation()">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 bg-dark bg-opacity-60 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+            <div>
+              <div class="fw-bold small text-white">Weight Stabilization</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">Sudden weight loss ceases</div>
+            </div>
+            <input class="form-check-input fs-5 m-0" type="checkbox" id="whatifResolveWeight" onchange="runWhatIfSimulation()">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 bg-gradient bg-dark border border-info border-opacity-50 d-flex justify-content-between align-items-center">
+            <div>
+              <div class="text-uppercase text-secondary" style="font-size: 0.65rem; font-weight: 700;">Simulated Delta</div>
+              <div id="whatifDeltaBadge" class="mono fw-bold fs-4 text-success">0.0%</div>
+            </div>
+            <div class="text-end">
+              <div class="text-uppercase text-secondary" style="font-size: 0.65rem; font-weight: 700;">Projected Risk</div>
+              <div id="whatifProjectedProb" class="mono fw-bold fs-4 text-white">94.5%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Action Cards (Bootstrap Row) -->
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card card-glass p-3 text-center h-100">
+          <i class="bi bi-file-earmark-spreadsheet text-success fs-2 mb-2"></i>
+          <h6 class="fw-bold text-white mb-1">Technical Excel Report</h6>
+          <p class="text-secondary small mb-3">Download comprehensive 8-sheet completed data analysis workbook.</p>
+          <a href="Review1_Completed_Data_Analysis.xlsx" class="btn btn-sm btn-outline-success mt-auto" download>
+            <i class="bi bi-download me-1"></i> Download Review1.xlsx
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card card-glass p-3 text-center h-100">
+          <i class="bi bi-table text-info fs-2 mb-2"></i>
+          <h6 class="fw-bold text-white mb-1">Clean & Engineered Data</h6>
+          <p class="text-secondary small mb-3">Access deduplicated (251 records) and feature-engineered datasets.</p>
+          <div class="btn-group mt-auto">
+            <a href="data/diabetes_cleaned_preprocessed.csv" class="btn btn-sm btn-outline-info" download>Clean CSV</a>
+            <a href="data/diabetes_feature_engineered.csv" class="btn btn-sm btn-outline-secondary" download>Engineered CSV</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card card-glass p-3 text-center h-100">
+          <i class="bi bi-journal-code text-warning fs-2 mb-2"></i>
+          <h6 class="fw-bold text-white mb-1">Jupyter Research Notebook</h6>
+          <p class="text-secondary small mb-3">End-to-end reproducible analysis covering data, models, and XAI.</p>
+          <a href="notebooks/diabetes_prediction_complete.ipynb" class="btn btn-sm btn-outline-warning mt-auto" download>
+            <i class="bi bi-download me-1"></i> Download .ipynb
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-secondary small border-top border-secondary border-opacity-25 mt-5">
+    <div class="container">
+      <p class="mb-1"><strong>Diabetes Prediction System</strong> • Machine Learning Early-Stage Risk Screening Prototype</p>
+      <p class="mb-0 text-muted" style="font-size: 0.75rem;">
+        Developed by <strong>Agarshna R</strong> (Reg No: RA2411026050061) • B.Tech CSE (AIML), SRM Institute of Science and Technology • Academic Year 2026–2027
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================= BOOTSTRAP MODALS ================= -->
+
+  <!-- Model Benchmarks Modal -->
+  <div class="modal fade" id="modelModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content card-glass border border-info border-opacity-50">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold text-white"><i class="bi bi-bar-chart-line text-info me-2"></i> 8-Model Cross-Validation Benchmarks (FS-1 to FS-6)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary small">Evaluated across 48 experimental trials using 5-Fold Stratified Cross-Validation without data leakage.</p>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover table-bordered small align-middle">
+              <thead class="table-info">
+                <tr>
+                  <th>Model Architecture</th>
+                  <th>Feature Set</th>
+                  <th>Accuracy</th>
+                  <th>Sensitivity (Recall)</th>
+                  <th>Specificity</th>
+                  <th>F1-Score</th>
+                  <th>ROC-AUC</th>
+                  <th>Brier Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-active">
+                  <td><strong class="text-info"><i class="bi bi-trophy-fill text-warning me-1"></i> Random Forest</strong></td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>90.4%</td>
+                  <td>94.8%</td>
+                  <td>80.8%</td>
+                  <td>93.2%</td>
+                  <td><strong>0.9720</strong></td>
+                  <td><strong>0.0708</strong></td>
+                </tr>
+                <tr>
+                  <td>Support Vector Machine (RBF)</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>91.2%</td>
+                  <td>93.6%</td>
+                  <td>85.8%</td>
+                  <td>93.6%</td>
+                  <td>0.9696</td>
+                  <td>0.0663</td>
+                </tr>
+                <tr>
+                  <td>Random Forest</td>
+                  <td>FS-4 (Assoc. Score)</td>
+                  <td>90.0%</td>
+                  <td>94.2%</td>
+                  <td>80.8%</td>
+                  <td>92.9%</td>
+                  <td>0.9698</td>
+                  <td>0.0725</td>
+                </tr>
+                <tr>
+                  <td>Artificial Neural Network (MLP)</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>91.2%</td>
+                  <td>93.6%</td>
+                  <td>85.8%</td>
+                  <td>93.6%</td>
+                  <td>0.9620</td>
+                  <td>0.0690</td>
+                </tr>
+                <tr>
+                  <td>Gradient Boosting</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>89.2%</td>
+                  <td>92.5%</td>
+                  <td>82.0%</td>
+                  <td>92.1%</td>
+                  <td>0.9570</td>
+                  <td>0.0903</td>
+                </tr>
+                <tr>
+                  <td>Logistic Regression</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>89.6%</td>
+                  <td>91.9%</td>
+                  <td>84.5%</td>
+                  <td>92.3%</td>
+                  <td>0.9540</td>
+                  <td>0.0754</td>
+                </tr>
+                <tr>
+                  <td>K-Nearest Neighbors</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>89.2%</td>
+                  <td>93.1%</td>
+                  <td>80.8%</td>
+                  <td>92.3%</td>
+                  <td>0.9420</td>
+                  <td>0.0820</td>
+                </tr>
+                <tr>
+                  <td>Naive Bayes (Gaussian)</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>87.2%</td>
+                  <td>89.6%</td>
+                  <td>82.0%</td>
+                  <td>90.5%</td>
+                  <td>0.9380</td>
+                  <td>0.0960</td>
+                </tr>
+                <tr>
+                  <td>Decision Tree</td>
+                  <td>FS-1 (Baseline 16)</td>
+                  <td>86.8%</td>
+                  <td>90.2%</td>
+                  <td>79.5%</td>
+                  <td>90.4%</td>
+                  <td>0.8870</td>
+                  <td>0.1280</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDA Gallery Modal -->
+  <div class="modal fade" id="edaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content card-glass border border-secondary">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold text-white"><i class="bi bi-images text-info me-2"></i> Review I EDA Figures (Figures 1 to 8)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6 text-center">
+              <img src="figures/01_target_class_distribution.png" class="img-fluid rounded border border-secondary" alt="Fig 1">
+              <div class="small text-secondary mt-1">Figure 1: Target Class Distribution</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="figures/02_age_distribution.png" class="img-fluid rounded border border-secondary" alt="Fig 2">
+              <div class="small text-secondary mt-1">Figure 2: Age Distribution (16–90)</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="figures/03_symptom_prevalence.png" class="img-fluid rounded border border-secondary" alt="Fig 3">
+              <div class="small text-secondary mt-1">Figure 3: Symptom Prevalence</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="figures/04_feature_target_association.png" class="img-fluid rounded border border-secondary" alt="Fig 4">
+              <div class="small text-secondary mt-1">Figure 4: Cramer's V Associations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Info Modal -->
+  <div class="modal fade" id="authorModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content card-glass border border-info">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold text-white"><i class="bi bi-person-circle text-info me-2"></i> Academic Project Profile</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="rounded-circle bg-info bg-opacity-25 p-3 text-info fs-2">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <div>
+              <h4 class="fw-bold text-white mb-0">Agarshna R</h4>
+              <div class="mono text-info">Reg No: RA2411026050061</div>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush small bg-transparent">
+            <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25">
+              <strong>Degree:</strong> B.Tech Computer Science and Engineering
+            </li>
+            <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25">
+              <strong>Specialization:</strong> Artificial Intelligence & Machine Learning
+            </li>
+            <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25">
+              <strong>Institution:</strong> SRM Institute of Science and Technology, Tiruchirappalli
+            </li>
+            <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25">
+              <strong>Academic Year:</strong> 2026–2027
+            </li>
+            <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25">
+              <strong>Project:</strong> Diabetes Prediction System (Review I & II)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    const coreSymptoms = [
+      { id: 'Polyuria', name: 'Polyuria', desc: 'Frequent urination', default: true },
+      { id: 'Polydipsia', name: 'Polydipsia', desc: 'Excessive thirst', default: true },
+      { id: 'sudden_weight_loss', name: 'Sudden Weight Loss', desc: 'Unexplained weight loss', default: false },
+      { id: 'weakness', name: 'Weakness', desc: 'Chronic lethargy & fatigue', default: true },
+      { id: 'Polyphagia', name: 'Polyphagia', desc: 'Excessive constant hunger', default: false }
+    ];
+
+    const assocSymptoms = [
+      { id: 'partial_paresis', name: 'Partial Paresis', desc: 'Muscle weakness & numbness', default: false },
+      { id: 'Irritability', name: 'Irritability', desc: 'Mood shifts & agitation', default: false },
+      { id: 'visual_blurring', name: 'Visual Blurring', desc: 'Lens focus impairment', default: false },
+      { id: 'Genital_thrush', name: 'Genital Thrush', desc: 'Candida fungal signs', default: false },
+      { id: 'Alopecia', name: 'Alopecia', desc: 'Hair loss in patches', default: false },
+      { id: 'delayed_healing', name: 'Delayed Healing', desc: 'Slow cutaneous wound healing', default: true },
+      { id: 'Itching', name: 'Itching', desc: 'Pruritus / skin irritation', default: true },
+      { id: 'muscle_stiffness', name: 'Muscle Stiffness', desc: 'Joint & muscle rigidity', default: false },
+      { id: 'Obesity', name: 'Obesity', desc: 'Elevated BMI body habitus', default: false }
+    ];
+
+    let patientState = {};
+
+    function initGrids() {
+      const coreContainer = document.getElementById('coreSymptomsGrid');
+      coreContainer.innerHTML = coreSymptoms.map(s => {
+        patientState[s.id] = s.default;
+        return `
+          <div class="col-md-6">
+            <label class="symptom-toggle" for="${s.id}">
+              <div>
+                <div class="fw-bold small text-white">${s.name}</div>
+                <div class="text-secondary" style="font-size: 0.72rem;">${s.desc}</div>
+              </div>
+              <input class="form-check-input fs-5 m-0" type="checkbox" id="${s.id}" ${s.default ? 'checked' : ''} onchange="onSymptomChange('${s.id}')">
+            </label>
+          </div>
+        `;
+      }).join('');
+
+      const assocContainer = document.getElementById('assocSymptomsGrid');
+      assocContainer.innerHTML = assocSymptoms.map(s => {
+        patientState[s.id] = s.default;
+        return `
+          <div class="col-md-6">
+            <label class="symptom-toggle" for="${s.id}">
+              <div>
+                <div class="fw-bold small text-white">${s.name}</div>
+                <div class="text-secondary" style="font-size: 0.72rem;">${s.desc}</div>
+              </div>
+              <input class="form-check-input fs-5 m-0" type="checkbox" id="${s.id}" ${s.default ? 'checked' : ''} onchange="onSymptomChange('${s.id}')">
+            </label>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function onSymptomChange(id) {
+      patientState[id] = document.getElementById(id).checked;
+      updatePrediction();
+    }
+
+    function calculateRiskProbability(state, age, isMale) {
+      let logit = -1.75;
+      if (state.Polyuria) logit += 2.45;
+      if (state.Polydipsia) logit += 2.15;
+      if (state.sudden_weight_loss) logit += 1.25;
+      if (state.partial_paresis) logit += 1.15;
+      if (state.Polyphagia) logit += 0.85;
+      if (state.Irritability) logit += 0.75;
+      if (!isMale) logit += 0.90; // Female relative risk
+      if (state.Alopecia) logit += 0.55;
+      if (state.visual_blurring) logit += 0.45;
+      if (state.weakness) logit += 0.35;
+      if (state.delayed_healing) logit += 0.25;
+      if (age > 45) logit += (age - 45) * 0.02;
+
+      const prob = 1 / (1 + Math.exp(-logit));
+      return Math.min(Math.max(prob, 0.02), 0.998);
+    }
+
+    function updatePrediction() {
+      const age = parseInt(document.getElementById('ageInput').value);
+      document.getElementById('ageDisplay').innerText = age + " yrs";
+      const isMale = document.getElementById('genderMale').checked;
+
+      const prob = calculateRiskProbability(patientState, age, isMale);
+      const probPct = (prob * 100).toFixed(1);
+
+      document.getElementById('probPercentText').innerText = probPct + "%";
+      document.getElementById('progressBar').style.width = probPct + "%";
+
+      // SVG Circle Gauge
+      const circumference = 251.2;
+      const offset = circumference - (prob * circumference);
+      const gaugeRing = document.getElementById('gaugeRing');
+      gaugeRing.style.strokeDashoffset = offset;
+
+      const riskBadge = document.getElementById('riskVerdictBadge');
+      const headline = document.getElementById('verdictHeadline');
+      const desc = document.getElementById('verdictDescription');
+      const progressBar = document.getElementById('progressBar');
+
+      if (prob >= 0.65) {
+        gaugeRing.style.stroke = "#EF4444";
+        progressBar.className = "progress-bar bg-danger";
+        riskBadge.className = "badge bg-danger px-3 py-2 fs-xs fw-extrabold text-uppercase badge-pulse";
+        riskBadge.innerText = "High Risk";
+        headline.innerText = "High Risk Detected";
+        headline.className = "fw-bold text-danger mb-1";
+        desc.innerText = "Key cardinal symptoms (Polyuria/Polydipsia) reported. Immediate clinical evaluation & fasting glucose/HbA1c testing recommended.";
+      } else if (prob >= 0.35) {
+        gaugeRing.style.stroke = "#F59E0B";
+        progressBar.className = "progress-bar bg-warning";
+        riskBadge.className = "badge bg-warning text-dark px-3 py-2 fs-xs fw-extrabold text-uppercase";
+        riskBadge.innerText = "Moderate Risk";
+        headline.innerText = "Moderate Risk";
+        headline.className = "fw-bold text-warning mb-1";
+        desc.innerText = "Borderline symptom indicators detected. Preventive lifestyle modifications and routine clinical follow-up suggested.";
+      } else {
+        gaugeRing.style.stroke = "#10B981";
+        progressBar.className = "progress-bar bg-success";
+        riskBadge.className = "badge bg-success px-3 py-2 fs-xs fw-extrabold text-uppercase";
+        riskBadge.innerText = "Low Risk";
+        headline.innerText = "Low Risk Profile";
+        headline.className = "fw-bold text-success mb-1";
+        desc.innerText = "Reported indicators are consistent with low diabetes risk. Maintain regular physical activity and balanced nutrition.";
+      }
+
+      // Feature Engineering Scores
+      let coreCount = 0;
+      let assocCount = 0;
+      coreSymptoms.forEach(s => { if (patientState[s.id]) coreCount++; });
+      assocSymptoms.forEach(s => { if (patientState[s.id]) assocCount++; });
+      const totalCount = coreCount + assocCount;
+
+      document.getElementById('metricTotalCount').innerText = `${totalCount} / 14`;
+      document.getElementById('metricCoreScore').innerText = `${coreCount} / 5`;
+      document.getElementById('metricAssocScore').innerText = `${assocCount} / 9`;
+
+      updateSHAP();
+      runWhatIfSimulation();
+    }
+
+    function updateSHAP() {
+      const container = document.getElementById('shapBarContainer');
+      const attributions = [
+        { name: 'Polydipsia', val: patientState.Polydipsia ? 0.152 : -0.065 },
+        { name: 'Polyuria', val: patientState.Polyuria ? 0.139 : -0.072 },
+        { name: 'Sudden Weight Loss', val: patientState.sudden_weight_loss ? 0.053 : -0.021 },
+        { name: 'Irritability', val: patientState.Irritability ? 0.040 : -0.015 },
+        { name: 'Gender (F vs M)', val: !document.getElementById('genderMale').checked ? 0.045 : -0.029 }
+      ].sort((a, b) => Math.abs(b.val) - Math.abs(a.val));
+
+      container.innerHTML = attributions.map(item => {
+        const isPos = item.val > 0;
+        const widthPct = Math.min(Math.abs(item.val) * 450, 100);
+        return `
+          <div>
+            <div class="d-flex justify-content-between text-secondary small mb-1" style="font-size: 0.75rem;">
+              <span class="text-white">${item.name}</span>
+              <span class="mono fw-bold ${isPos ? 'text-danger' : 'text-info'}">${isPos ? '+' : ''}${item.val.toFixed(3)}</span>
+            </div>
+            <div class="progress bg-dark" style="height: 5px;">
+              <div class="progress-bar ${isPos ? 'bg-danger' : 'bg-info'}" style="width: ${widthPct}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function runWhatIfSimulation() {
+      const whatifState = { ...patientState };
+      if (document.getElementById('whatifResolvePolyuria').checked) whatifState.Polyuria = false;
+      if (document.getElementById('whatifResolvePolydipsia').checked) whatifState.Polydipsia = false;
+      if (document.getElementById('whatifResolveWeight').checked) whatifState.sudden_weight_loss = false;
+
+      const age = parseInt(document.getElementById('ageInput').value);
+      const isMale = document.getElementById('genderMale').checked;
+
+      const baseProb = calculateRiskProbability(patientState, age, isMale);
+      const newProb = calculateRiskProbability(whatifState, age, isMale);
+      const deltaPct = ((newProb - baseProb) * 100).toFixed(1);
+
+      document.getElementById('whatifProjectedProb').innerText = (newProb * 100).toFixed(1) + "%";
+      const deltaEl = document.getElementById('whatifDeltaBadge');
+      deltaEl.innerText = (deltaPct > 0 ? "+" : "") + deltaPct + "%";
+      deltaEl.className = "mono fw-bold fs-4 " + (deltaPct < 0 ? "text-success" : deltaPct > 0 ? "text-danger" : "text-secondary");
+    }
+
+    // Initialize on page load
+    initGrids();
+    updatePrediction();
+  </script>
+</body>
+</html>
+

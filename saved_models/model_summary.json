@@ -1,0 +1,54 @@
+{
+    "model_name": "Random Forest",
+    "feature_set_id": "FS-1",
+    "feature_set_name": "Original 16 Predictors",
+    "feature_names": [
+        "Age",
+        "Gender",
+        "Polyuria",
+        "Polydipsia",
+        "sudden weight loss",
+        "weakness",
+        "Polyphagia",
+        "Genital thrush",
+        "visual blurring",
+        "Itching",
+        "Irritability",
+        "delayed healing",
+        "partial paresis",
+        "muscle stiffness",
+        "Alopecia",
+        "Obesity"
+    ],
+    "num_features": 16,
+    "test_metrics": {
+        "Accuracy": 0.9019607843137255,
+        "Precision": 0.96875,
+        "Recall": 0.8857142857142857,
+        "Specificity": 0.9375,
+        "F1_Score": 0.9253731343283582,
+        "ROC_AUC": 0.9678571428571429,
+        "PR_AUC": 0.9871226217245143,
+        "Brier_Score": 0.0824022900561739,
+        "TN": 15,
+        "FP": 1,
+        "FN": 4,
+        "TP": 31
+    },
+    "calibration_data": {
+        "prob_true": [
+            0.1111111111111111,
+            0.14285714285714285,
+            0.7142857142857143,
+            1.0,
+            1.0
+        ],
+        "prob_pred": [
+            0.08996757295618608,
+            0.2979553119257269,
+            0.5053117069826654,
+            0.6793979504183334,
+            0.9489634486391573
+        ]
+    }
+}
