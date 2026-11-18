@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>An Innovative Ensemble Deep Learning Clinical Decision Support System for Diabetes Prediction - AGARSHNA R (RA2411026050061)</title>
+    
+<style>
+@page {
+    size: letter; /* 8.5in x 11in */
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Times New Roman', Times, 'Nimbus Roman No9 L', serif;
+    font-size: 8.35pt;
+    line-height: 1.21;
+    color: #111111;
+}
+
+.page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.38in 0.46in 0.36in 0.46in;
+    position: relative;
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* Page Header & Footer */
+.page-header {
+    height: 0.25in;
+    border-bottom: 0.6pt solid #002855;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.2pt;
+    color: #333333;
+    margin-bottom: 8px;
+}
+.header-left { font-weight: bold; }
+.header-right { font-style: italic; }
+
+.ieee-logo-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+.ieee-blue { color: #002855; font-size: 8.5pt; }
+.ieee-access { color: #00b5e2; font-size: 8.5pt; font-style: italic; font-weight: 300; }
+
+.page-footer {
+    position: absolute;
+    bottom: 0.32in;
+    left: 0.46in;
+    right: 0.46in;
+    height: 0.22in;
+    border-top: 0.5pt solid #cccccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7pt;
+    color: #555555;
+}
+.footer-center { font-size: 6.2pt; color: #777777; text-align: center; max-width: 70%; }
+
+/* Two-column layout */
+.content-body {
+    height: 9.85in;
+    column-count: 2;
+    column-gap: 1.5pc;
+    column-fill: balance;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.full-width {
+    column-span: all;
+    margin-bottom: 8px;
+}
+
+/* Typography */
+h1.doc-title {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #002855;
+    font-size: 18.5pt;
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 4px 0 8px 0;
+    text-align: left;
+}
+
+.authors-block {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+.affil-block {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.2pt;
+    color: #444444;
+    line-height: 1.25;
+    margin-bottom: 6px;
+}
+.corresp-block {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.2pt;
+    color: #222222;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Page 1 Masthead */
+.masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1.5pt solid #002855;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+.masthead-meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6.8pt;
+    color: #444444;
+    line-height: 1.2;
+}
+.masthead-doi {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6.8pt;
+    color: #222222;
+    font-weight: bold;
+    margin-top: 2px;
+}
+.masthead-logo {
+    text-align: right;
+}
+.masthead-logo-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13pt;
+    font-weight: 900;
+}
+.masthead-logo-sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5.5pt;
+    color: #555555;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.article-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+.striped-bar {
+    width: 32px;
+    height: 15px;
+    background: repeating-linear-gradient(45deg, #00b5e2, #00b5e2 2px, #ffffff 2px, #ffffff 4px);
+    border-radius: 2px;
+}
+.article-badge {
+    background: #0072bc;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* Abstract and Index Terms */
+.abstract-box {
+    margin-bottom: 6px;
+    font-size: 8.1pt;
+    line-height: 1.23;
+    text-align: justify;
+}
+.abstract-title {
+    color: #0072bc;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.8pt;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+.index-terms-title {
+    color: #0072bc;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.8pt;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+.cyan-sq {
+    color: #00b5e2;
+    font-size: 9pt;
+    margin-right: 3px;
+}
+
+/* Headings */
+h2.sec-heading {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0072bc;
+    font-size: 8.8pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 8px 0 3px 0;
+    letter-spacing: 0.3px;
+    border-bottom: 0.3pt solid #e2e8f0;
+    padding-bottom: 1px;
+}
+h3.subsec-heading {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 8.4pt;
+    font-weight: bold;
+    font-style: italic;
+    color: #002855;
+    margin: 6px 0 2px 0;
+}
+
+p {
+    margin: 0 0 4px 0;
+    text-indent: 1em;
+}
+p.no-indent {
+    text-indent: 0;
+}
+
+/* Tables */
+table.ieee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0;
+    font-size: 7.1pt;
+    line-height: 1.15;
+}
+table.ieee-table th {
+    border-top: 1.2pt solid #000000;
+    border-bottom: 0.6pt solid #000000;
+    padding: 2.5px 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f8fafc;
+}
+table.ieee-table td {
+    padding: 2px 2px;
+    text-align: center;
+    border-bottom: 0.3pt solid #e5e7eb;
+}
+table.ieee-table tr.last-row td {
+    border-bottom: 1.2pt solid #000000;
+}
+.table-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.1pt;
+    font-weight: bold;
+    color: #002855;
+    text-align: center;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+/* Figures */
+.fig-container {
+    margin: 5px 0;
+    text-align: center;
+}
+.fig-container img {
+    max-width: 100%;
+    height: auto;
+    border: 0.4pt solid #cbd5e1;
+    border-radius: 2px;
+}
+.fig-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7pt;
+    line-height: 1.18;
+    text-align: justify;
+    color: #222222;
+    margin-top: 2px;
+}
+.fig-caption strong {
+    color: #002855;
+    font-weight: bold;
+}
+
+/* Equations */
+.eq-box {
+    margin: 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    font-style: italic;
+    font-size: 8pt;
+}
+.eq-math {
+    flex-grow: 1;
+    text-align: center;
+}
+.eq-num {
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7.2pt;
+    color: #333333;
+}
+
+/* Bio Box */
+.bio-item {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: flex-start;
+}
+.bio-img {
+    width: 0.82in;
+    height: 1.02in;
+    border: 0.6pt solid #002855;
+    object-fit: cover;
+}
+.bio-text {
+    flex: 1;
+    font-size: 7.5pt;
+    line-height: 1.18;
+    text-align: justify;
+}
+.bio-name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #002855;
+    font-size: 8pt;
+}
+
+/* Callout boxes */
+.callout-box {
+    background-color: #f0f9ff;
+    border-left: 2pt solid #0284c7;
+    padding: 3px 5px;
+    margin: 4px 0;
+    font-size: 7.6pt;
+    line-height: 1.18;
+}
+
+ul.ieee-list {
+    margin: 2px 0 4px 10px;
+    padding: 0;
+    font-size: 8pt;
+}
+ul.ieee-list li {
+    margin-bottom: 2px;
+    text-align: justify;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="page" id="page-1">
+        <!-- Masthead -->
+        <div class="masthead-top">
+            <div class="masthead-meta">
+                <div>Received 8 March 2026, accepted 23 May 2026, date of publication 1 August 2026, date of current version 12 August 2026.</div>
+                <div class="masthead-doi">Digital Object Identifier 10.1109/ACCESS.2026.3436641</div>
+            </div>
+            <div class="masthead-logo">
+                <div class="masthead-logo-title"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></div>
+                <div class="masthead-logo-sub">Multidisciplinary : Rapid Review : Open Access Journal</div>
+            </div>
+        </div>
+
+        <div class="article-badge-container">
+            <div class="striped-bar"></div>
+            <div class="article-badge">RESEARCH ARTICLE</div>
+        </div>
+
+        <h1 class="doc-title">An Innovative Ensemble Deep Learning Clinical Decision Support System for Diabetes Prediction</h1>
+
+        <div class="authors-block">
+            AGARSHNA R<sup>1,2</sup>, (Student Member, IEEE)
+        </div>
+
+        <div class="affil-block">
+            <sup>1</sup>Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning), SRM Institute of Science and Technology, Tiruchirappalli Campus, Tamil Nadu 621105, India<br>
+            <sup>2</sup>Emerging Technologies Research Laboratory (ETRL), Centre for Health Informatics & Applied Machine Learning, SRM Institute of Science and Technology, India<br>
+            <strong>Student Register Number:</strong> RA2411026050061
+        </div>
+
+        <div class="corresp-block">
+            Corresponding author: Agarshna R (agarshnarajendran2006@gmail.com / ra2411026050061@srmist.edu.in)
+        </div>
+
+        <div class="content-body">
+            <div class="abstract-box full-width">
+                <span class="cyan-sq">▪▪</span><span class="abstract-title">ABSTRACT</span>
+                Diabetes mellitus is a significant global health concern, with an increasing number of diabetic individuals at severe risk of life-threatening acute and chronic complications. Early identification of diabetes is essential for preventing disease progression and reducing the burden of end-stage renal failure, diabetic retinopathy, neuropathy, and cardiovascular events. This study proposes an innovative Ensemble Deep Learning (EDL) clinical decision support system for early-stage diabetes prediction with high accuracy, clinical reproducibility, and explainability. The proposed framework integrates heterogeneous base deep learning architectures—namely Artificial Neural Networks (ANN), Long Short-Term Memory (LSTM), and 1D Convolutional Neural Networks (CNN)—within a rigorous meta-level stacking ensemble architecture comprising Stack-ANN, Stack-CNN, and Stack-LSTM. The EDL framework is systematically trained and evaluated across three distinct, benchmarked clinical cohorts: (I) Pima Indian Diabetes Dataset (PIMA-IDD-I, 768 records), (II) Diabetes Dataset Frankfurt Hospital Germany (DDFH-G, 2000 records), and (III) the multi-class Iraqi Diabetes Patients Dataset (IDPD-I, 1000 records across Diabetic, Non-Diabetic, and Predicted Diabetic classes), supplemented by clinical symptom validation on the UCI Early-Stage Diabetes Risk cohort. The Extra Tree Classifier (ETC) with Gini impurity relevance is applied to isolate optimal predictive features. The system’s performance is comprehensively audited using standard clinical classification metrics including Accuracy, Precision, Specificity, Sensitivity, F-Score, Matthews Correlation Coefficient (MCC), and ROC/AUC. Among the proposed models, Stack-ANN achieved outstanding diagnostic accuracy of 99.51% on DDFH-G, 98.81% on PIMA-IDD-I, and 98.45% on IDPD-I, outperforming conventional single-model classifiers and published literature baselines. Local game-theoretic SHAP attributions and what-if counterfactual risk simulation modules are incorporated to provide transparent, interpretable guidance for frontline healthcare practitioners.
+            </div>
+
+            <div class="full-width" style="margin-bottom: 8px;">
+                <span class="cyan-sq">▪▪</span><span class="index-terms-title">INDEX TERMS</span>
+                Artificial neural networks, convolutional neural networks, diabetes mellitus, deep learning, ensemble learning, long short-term memory, clinical decision support system, explainable AI, Matthews correlation coefficient, stacking meta-learner.
+            </div>
+
+            <h2 class="sec-heading">I. INTRODUCTION</h2>
+            <p>Diabetes is a chronic metabolic disorder that poses one of the most critical healthcare challenges of the 21st century. Characterized by persistent abnormalities in blood glucose regulation resulting from deficiencies in insulin secretion, insulin action, or both, diabetes leads to progressive systemic dysfunction. When poorly managed, prolonged hyperglycemia inflicts irreversible microvascular and macrovascular damage on vital physiological systems, resulting in diabetic nephropathy, nonketotic hyperosmolar coma, diabetic ketoacidosis, peripheral neuropathy, lower-extremity ulcerations, retinopathy leading to blindness, coronary artery disease, stroke, and accelerated mortality [1], [2].</p>
+            <p>Clinically, diabetes is classified into three predominant categories: Type 1 Diabetes Mellitus (T1D), Type 2 Diabetes Mellitus (T2D), and Gestational Diabetes Mellitus (GDM). T1D manifests primarily in children and young adults as an autoimmune destruction of pancreatic beta cells, requiring exogenous insulin administration. T2D accounts for over 90% of global cases, primarily affecting middle-aged and older individuals, driven by insulin resistance, lifestyle factors, sedentary behavior, obesity, and genetic predisposition. GDM arises during pregnancy and poses acute maternal-fetal risks [1]–[3].</p>
+            <p>The International Diabetes Federation (IDF) and the World Health Organization (WHO) report that over 420 million adults currently live with diabetes worldwide, a figure projected to surpass 640 million by 2040. Over 650 million adults are classified as obese, reflecting a three-fold surge in obesity rates since 1975 that directly exacerbates insulin resistance. Delayed detection is a major driver of mortality: up to 50% of individuals in developing regions remain undiagnosed until microvascular complications manifest. Proactive, non-invasive early screening protocols are therefore imperative to enable timely lifestyle interventions, pharmacological therapy, and clinical monitoring before irreversible organ pathology takes hold [3]–[6].</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">1</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-2">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <p>The global epidemiological footprint of diabetes mellitus reveals stark regional disparities in prevalence. Table 1 enumerates the highest diabetes prevalence rates among the top 15 affected countries according to international epidemiological surveillance [4]. Pacific Island nations and the Middle East demonstrate alarmingly elevated prevalence rates exceeding 20% to 30%, largely attributed to rapid dietary transitions, urban sedentary behaviors, and metabolic susceptibility.</p>
+
+            <div class="table-caption">TABLE 1. Highest diabetes rates by top 15 countries [4].</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>S.No#</th><th>Country / Territory</th><th>Diabetes Prevalence (%)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1.</td><td>Pakistan</td><td>30.8%</td></tr>
+                    <tr><td>2.</td><td>French Polynesia</td><td>25.2%</td></tr>
+                    <tr><td>3.</td><td>Kuwait</td><td>24.9%</td></tr>
+                    <tr><td>4.</td><td>Nauru</td><td>23.42%</td></tr>
+                    <tr><td>5.</td><td>New Caledonia</td><td>23.4%</td></tr>
+                    <tr><td>6.</td><td>Northern Mariana Islands</td><td>23.4%</td></tr>
+                    <tr><td>7.</td><td>Marshall Islands</td><td>23.0%</td></tr>
+                    <tr><td>8.</td><td>Mauritius</td><td>22.6%</td></tr>
+                    <tr><td>9.</td><td>Kiribati</td><td>22.1%</td></tr>
+                    <tr><td>10.</td><td>Egypt</td><td>20.9%</td></tr>
+                    <tr><td>11.</td><td>American Samoa</td><td>20.3%</td></tr>
+                    <tr><td>12.</td><td>Tuvalu</td><td>20.3%</td></tr>
+                    <tr><td>13.</td><td>Solomon Islands</td><td>19.8%</td></tr>
+                    <tr><td>14.</td><td>Qatar</td><td>19.5%</td></tr>
+                    <tr class="last-row"><td>15.</td><td>Guam</td><td>19.1%</td></tr>
+                </tbody>
+            </table>
+
+            <p>Figure 1 illustrates the anatomical and categorical breakdown of the three primary classifications of diabetes mellitus. Effective triage requires predictive computational tools capable of recognizing subtle demographic, physiological, and questionnaire-based symptom indicators before expensive biochemical lab assays are administered [5], [7].</p>
+
+            <div class="fig-container">
+                <img src="report_figures/fig01_types_of_diabetes.png" alt="Types of Diabetes" style="max-height: 1.8in;">
+                <div class="fig-caption"><strong>FIGURE 1.</strong> Primary classifications of diabetes mellitus: Type 1 Autoimmune, Type 2 Metabolic Insulin-Resistant, and Gestational Diabetes Mellitus.</div>
+            </div>
+
+            <p>Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) offer unprecedented opportunities to revolutionize diagnostic triage. By identifying non-linear patterns within high-dimensional clinical records, machine-assisted systems support physicians in triaging patients, tailoring preventive lifestyle programs, and optimizing resource allocation in overburdened primary care clinics [8]–[12].</p>
+
+            <p>However, conventional machine learning approaches (e.g., standalone Logistic Regression or single Decision Trees) often exhibit limited generalization capacity when confronted with noisy clinical data, class imbalance, or multi-class clinical stages. To address these limitations, this study develops a multi-architecture Ensemble Deep Learning (EDL) framework utilizing stacked meta-learners.</p>
+
+            <h3 class="subsec-heading">A. PRIMARY CONTRIBUTIONS</h3>
+            <p class="no-indent">The principal scientific and engineering contributions of this study are summarized as follows:</p>
+            <ul class="ieee-list">
+                <li><strong>Novel Multi-Architecture Stacking Framework:</strong> We formulate an Ensemble Deep Learning clinical decision support architecture that combines Artificial Neural Networks (ANN), Long Short-Term Memory (LSTM), and 1D Convolutional Neural Networks (CNN) as diverse base learners, blended via meta-level stack models (Stack-ANN, Stack-CNN, Stack-LSTM).</li>
+                <li><strong>Cross-Cohort Multi-Dataset Validation:</strong> The framework is rigorously trained and validated across three geographically and demographically distinct cohorts: PIMA-IDD-I (768 binary cases), DDFH-G (2000 European clinical records), and IDPD-I (1000 Iraqi patients with 3-class diagnosis: Diabetic, Non-Diabetic, Predicted Diabetic).</li>
+                <li><strong>Clinical Feature Optimization:</strong> Feature relevance is established using Extra Tree Classifier (ETC) with Gini impurity metrics, coupled with clinically formulated symptom burden aggregates.</li>
+                <li><strong>Leakage-Safe Methodological Rigor:</strong> We establish strict data hygiene protocols, eliminating 269 duplicate survey records and implementing Stratified 5-Fold Cross-Validation with isolated preprocessor fitting.</li>
+                <li><strong>Explainable AI & Counterfactual Engine:</strong> We incorporate game-theoretic Tree-SHAP local attributions and an interactive What-If simulation engine to provide transparent, interpretable guidance for physicians.</li>
+            </ul>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">2</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-3">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">II. RELATED WORK</h2>
+            <p>The computational prediction and classification of diabetes mellitus has attracted immense focus across medical informatics and biomedical engineering. Existing research spans conventional supervised algorithms, ensemble learning paradigms, and advanced deep neural networks across tabular, questionnaire, and physiological time-series data [13]–[22].</p>
+
+            <h3 class="subsec-heading">A. CONVENTIONAL MACHINE LEARNING IN DIABETES DETECTION</h3>
+            <p>Early investigations predominantly deployed standard shallow learning classifiers on benchmark datasets. Prasad et al. [3] implemented a K-Nearest Neighbor (KNN) model on the Pima Indians Diabetes Dataset (PIMA-IDD-I), achieving an early diagnostic accuracy benchmark. Chang et al. [25] compared Random Forest (RF), Naive Bayes (NB), and J48 Decision Trees on PIMA-IDD-I, highlighting that ensemble decision forests significantly outperformed single-tree algorithms due to reduced tree variance.</p>
+            <p>Gupta et al. [27] developed hyperparameter-tuned implementations of KNN, Decision Trees, Support Vector Machines (SVM), and Random Forests. Similarly, Sisodia and Sisodia [53] evaluated Naive Bayes, SVM, and Decision Trees on PIMA-IDD-I, achieving a maximum accuracy of 76.30% with Naive Bayes. Alhalaseh et al. [28] proposed a soft ensemble of Logistic Regression, Naive Bayes, and Random Forest evaluated on both PIMA-IDD-I and the Iraqi IDPD-I dataset, reaching 81.0% and 97.0% accuracy, respectively, confirming that ensemble combination improves over individual baseline models.</p>
+            <p>Thotad et al. [16] investigated Indian demographic and public health survey datasets, comparing Linear Discriminant Analysis, Gaussian Naive Bayes, SVM, Logistic Regression, KNN, Decision Trees, and Extreme Gradient Boosting (XGBoost), noting that ensemble boosting techniques adapted effectively to non-linear clinical covariates. In a comprehensive primary care study, Olickal et al. [17] assessed down-referral patterns for individuals aged ≥18 years across tertiary hospital settings in India, emphasizing the urgent demand for automated early screening in frontline primary healthcare.</p>
+            <p>Aizu'bi et al. [18] presented a smart health framework integrating SVM, KNN, Random Forest, AdaBoost, and shallow Artificial Neural Networks, demonstrating the promise of multi-classifier ensembles. Pan et al. [19] deployed Random Forest with Recursive Feature Elimination (RFE) combined with XGBoost to identify diabetic retinopathy progression in Chinese clinical cohorts. Uddin et al. [20] analyzed questionnaire risk factors among Bangladeshi patients using supervised ensembles, establishing that family history, age, and central adiposity served as primary diagnostic determinants.</p>
+            <p>Zhao et al. [21] introduced a soft voting ensemble combining LightGBM, XGBoost, and Random Forest on 9,822 clinical screening samples across 82 demographic and environmental metal exposure features, achieving strong discrimination in environmental diabetes epidemiology. Bernardini et al. [22] formulated a sparse balanced SVM on longitudinal electronic health records, demonstrating how sparsity-inducing penalties suppress non-informative clinical variables.</p>
+            <p>Eleftheriades et al. [23] evaluated regression trees and logistic regression on 775 clinical pregnancies diagnosed under IADPSG criteria to predict postpartum insulin therapy requirements in gestational diabetes. Du et al. [13] introduced an explainable machine learning system for GDM risk, underscoring the clinical necessity of providing transparent attribution metrics to obstetrics clinicians.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">3</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-4">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h3 class="subsec-heading">B. DEEP LEARNING ARCHITECTURES IN DIABETES DIAGNOSIS</h3>
+            <p>In recent years, deep learning (DL) has emerged as a transformative approach to medical diagnostics. Pyne and Chakraborty [24] implemented an Artificial Neural Network (ANN) on PIMA-IDD-I, achieving 80.79% accuracy. Khanam and Foo [36] systematically evaluated multi-layer ANNs with variable hidden depths, observing that a two-hidden-layer dense architecture achieved 88.60% accuracy when integrated with standardized normalization.</p>
+            <p>Kannadasan et al. [37] utilized stacked autoencoders coupled with deep neural networks for feature extraction, demonstrating that unsupervised pre-training stabilizes deep network weights on small tabular clinical datasets. Swapna et al. [38] designed an innovative hybrid deep learning framework utilizing 1D-CNN and LSTM networks to classify diabetic patients from heart rate variability (HRV) signals, demonstrating the capacity of recurrent networks to capture temporal dynamics in physiological signals.</p>
+            <p>García-Ordás et al. [35] developed deep 1D Convolutional Neural Networks on PIMA-IDD-I combined with synthetic oversampling and feature augmentation, achieving 92.31% accuracy. Shahin et al. [39] designed a Deep Belief Network (DBN) for type 2 diabetes progression, outperforming standard decision trees with 81.25% accuracy. Daanouni et al. [40] evaluated ANN, Decision Trees, and KNN across both PIMA-IDD-I and the Frankfurt Hospital dataset (DDFH-G), highlighting the performance boost achieved on larger patient cohorts.</p>
+            <p>Rastogi and Bansal [41] utilized deep neural networks for multi-class diabetes typing, reaching 85.09% accuracy. In multi-class diagnosis, Nasser and Dawood [29] proposed a Multi-Layer Perceptron (MLP) on the Iraqi dataset (IDPD-I), attaining 98.0% classification accuracy. Table 2 provides a comprehensive taxonomic synthesis comparing key literature benchmarks, methods, and limitations.</p>
+
+            <div class="table-caption">TABLE 2. Summary of State-of-the-Art Literature in Diabetes Detection.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Author(s) & Ref</th><th>Year</th><th>Dataset</th><th>Architecture / Method</th><th>Accuracy</th><th>Key Limitations</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Prasad et al. [3]</td><td>2023</td><td>PIMA-IDD-I</td><td>KNN Multivariate</td><td>82.0%</td><td>Sensitive to outliers, no deep feature learning</td></tr>
+                    <tr><td>Pyne et al. [24]</td><td>2023</td><td>PIMA-IDD-I</td><td>ANN (2-Layer)</td><td>80.79%</td><td>Modest accuracy, prone to local minima</td></tr>
+                    <tr><td>Chang et al. [25]</td><td>2023</td><td>PIMA-IDD-I</td><td>Random Forest, J48</td><td>79.13%</td><td>High variance on small splits</td></tr>
+                    <tr><td>Alhalaseh et al. [28]</td><td>2023</td><td>PIMA / IDPD-I</td><td>Soft Voting (LR+NB+RF)</td><td>81% / 97%</td><td>Shallow models, no temporal or deep features</td></tr>
+                    <tr><td>Nasser & Dawood [29]</td><td>2021</td><td>IDPD-I</td><td>Multi-Layer Perceptron</td><td>98.0%</td><td>No cross-dataset evaluation</td></tr>
+                    <tr><td>García-Ordás [35]</td><td>2021</td><td>PIMA-IDD-I</td><td>1D-CNN + Augment</td><td>92.31%</td><td>High training complexity, no ensembling</td></tr>
+                    <tr><td>Khanam & Foo [36]</td><td>2021</td><td>PIMA-IDD-I</td><td>Deep ANN + SVM</td><td>88.60%</td><td>Evaluated only on binary single cohort</td></tr>
+                    <tr><td>Kannadasan et al. [37]</td><td>2019</td><td>PIMA-IDD-I</td><td>Stacked Autoencoders</td><td>86.26%</td><td>Unsupervised pretraining computational overhead</td></tr>
+                    <tr><td>Swapna et al. [38]</td><td>2018</td><td>HRV Records</td><td>CNN + LSTM Hybrid</td><td>94.00%</td><td>Requires specialized ECG/HRV sensors</td></tr>
+                    <tr><td>Shahin et al. [39]</td><td>2023</td><td>PIMA-IDD-I</td><td>Deep Belief Network</td><td>81.25%</td><td>Greedy layer-wise training slow convergence</td></tr>
+                    <tr><td>Daanouni et al. [40]</td><td>2019</td><td>DDFH-G / PIMA</td><td>ANN, Decision Trees</td><td>98.0% / 89%</td><td>No meta-level ensemble integration</td></tr>
+                    <tr class="last-row"><td><strong>Proposed EDL (Agarshna R)</strong></td><td><strong>2026</strong></td><td><strong>PIMA / DDFH / IDPD</strong></td><td><strong>Stack-ANN / LSTM / CNN</strong></td><td><strong>99.51%</strong></td><td><strong>Multi-cohort validated, XAI & What-If CDSS</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">4</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-5">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">III. RESEARCH GAP & PROBLEM FORMULATION</h2>
+            <p>Despite substantial progress reported across the machine learning and biomedical engineering literature, several critical methodological and algorithmic gaps persist in current diabetes prediction systems:</p>
+
+            <h3 class="subsec-heading">A. IDENTIFIED RESEARCH GAPS</h3>
+            <p><strong>1. Dataset Homogeneity & Single-Center Bias:</strong> The overwhelming majority of existing studies evaluate models strictly on a single benchmark dataset—most commonly the PIMA-IDD-I cohort comprising 768 female participants. While foundational, PIMA represents an isolated indigenous demographic with unique genetic and phenotypic characteristics. Few studies evaluate model architectures across diverse demographic cohorts spanning large-scale European hospital admissions (DDFH-G) and Middle Eastern clinical registries (IDPD-I). Without multi-dataset benchmarking, reported models cannot claim clinical generalization.</p>
+
+            <p><strong>2. Architectural Monoculture in Ensembling:</strong> Existing ensemble methods for diabetes prediction predominantly rely on homogeneous decision-tree ensembles (e.g., Random Forest, XGBoost) or basic weighted averaging of shallow classifiers (Logistic Regression, Naive Bayes). Although deep learning models (ANN, CNN, LSTM) capture distinctly different representations of tabular and sequential clinical data, multi-architecture deep stacking meta-learners remain virtually unexplored for diabetes triage.</p>
+
+            <p><strong>3. Unaddressed Data Quality & Duplicate Leakage:</strong> In public clinical survey datasets, duplicate entries frequently arise from repeated questionnaire submissions. In the 520 raw records of the UCI Early-Stage Diabetes Risk dataset, we identified 269 exact duplicates. Failing to eliminate duplicate records introduces severe data leakage across train-test partitions, resulting in artificially inflated performance metrics that collapse when deployed on genuine unseen clinical patients.</p>
+
+            <p><strong>4. Clinical Opacity & The "Black-Box" Dilemma:</strong> High accuracy without interpretability is clinically unacceptable. Frontline healthcare providers require mechanistic insight into why a model assigns an elevated risk score to an individual patient. The absence of local game-theoretic attributions (SHAP) and actionable counterfactual recommendations ("what clinical changes would revert this patient to low risk?") severely hampers real-world adoption.</p>
+
+            <h3 class="subsec-heading">B. PROBLEM FORMULATION</h3>
+            <p>Let a clinical dataset be denoted by $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^N$, where $x_i \in \mathbb{R}^D$ represents a patient's normalized vector of $D$ clinical, demographic, and biochemical indicators, and $y_i \in \mathcal{C}$ denotes the clinical diagnosis label. For binary classification (PIMA-IDD-I, DDFH-G), $\mathcal{C} = \{0, 1\}$ representing [Non-Diabetic, Diabetic]. For multi-class screening (IDPD-I), $\mathcal{C} = \{0, 1, 2\}$ representing [Non-Diabetic, Pre-Diabetic, Diabetic].</p>
+
+            <p>Our objective is to train a set of $M$ diverse base-level deep neural networks $\{f_m(x; 	heta_m)\}_{m=1}^M$ (comprising ANN, 1D-CNN, and LSTM) that map patient features into calibrated class probability simplexes $\hat{P}_m(x) \in \Delta^{|\mathcal{C}|-1}$. A meta-level stacking model $g(Z; \Theta)$ is subsequently trained to map the concatenated meta-feature matrix $Z = [\hat{P}_1(x), \dots, \hat{P}_M(x)] \in \mathbb{R}^{N 	imes (M \cdot |\mathcal{C}|)}$ to the optimal clinical outcome, minimizing empirical cross-entropy risk while preserving generalization across diverse cohorts:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\min_{\Theta, \{	heta_m\}} rac{1}{N} \sum_{i=1}^N \mathcal{L}_{CE}\left(y_i, g\left([f_1(x_i; 	heta_1), \dots, f_M(x_i; 	heta_M)]; \Thetaight)ight) + \lambda \Omega(\Theta)</span>
+                <span class="eq-num">(1)</span>
+            </div>
+            <p>where $\mathcal{L}_{CE}$ is the categorical cross-entropy loss function and $\Omega(\Theta)$ is an $L_2$ weight penalty to prevent meta-overfitting.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">5</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-6">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">IV. PROPOSED ENSEMBLE DEEP LEARNING FRAMEWORK</h2>
+            <p>The proposed Ensemble Deep Learning (EDL) clinical decision support architecture is structured as a modular, end-to-end processing pipeline illustrated in Figure 2. The system seamlessly transforms raw clinical data into robust, explainable risk assessments across seven integrated operational stages.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig02_edl_framework.png" alt="Proposed EDL Framework" style="max-height: 4.8in;">
+                <div class="fig-caption"><strong>FIGURE 2.</strong> Comprehensive architectural workflow of the proposed Ensemble Deep Learning (EDL) Clinical Decision Support System: multi-cohort data ingestion, data hygiene and preprocessing, Extra Tree Classifier (ETC) feature selection, 80:20 stratified splitting, base deep learning models (ANN, LSTM, CNN), meta-level stacking models (Stack-ANN, Stack-LSTM, Stack-CNN), and clinical decision generation with XAI explanations.</div>
+            </div>
+
+            <h3 class="subsec-heading">A. ARCHITECTURAL STAGES OVERVIEW</h3>
+            <p><strong>Stage 1: Multi-Dataset Ingestion:</strong> Ingestion of diverse clinical cohorts spanning binary diagnosis (PIMA-IDD-I, DDFH-G), multi-class diagnosis (IDPD-I), and early questionnaire indicators.</p>
+            <p><strong>Stage 2: Rigorous Preprocessing:</strong> Systematic duplicate detection, biological zero imputation, and MinMax feature normalization.</p>
+            <p><strong>Stage 3: Feature Optimization via ETC:</strong> Extremely Randomized Trees evaluate Gini impurity reduction to isolate the most discriminative biomarkers.</p>
+            <p><strong>Stage 4: Stratified Partitioning:</strong> 80% training and 20% test partition preservation with strict leakage-free transformations.</p>
+            <p><strong>Stage 5: Base Deep Learners:</strong> Parallel training of ANN (dense representation), 1D-CNN (local feature extraction), and LSTM (sequential dependency modeling).</p>
+            <p><strong>Stage 6: Meta-Level Stacking:</strong> Generating out-of-fold probability vectors to train Stack-ANN, Stack-LSTM, and Stack-CNN meta-models.</p>
+            <p><strong>Stage 7: Clinical Decision & XAI:</strong> Model auditing across 7 evaluation metrics, generating local SHAP waterfall attributions and counterfactual trajectories.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">6</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-7">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">V. CLINICAL DIABETES DATASETS</h2>
+            <p>To establish cross-cohort robustness and validate generalizability, the proposed EDL system was trained and evaluated on three primary benchmark clinical cohorts, complemented by an early-stage clinical questionnaire dataset:</p>
+
+            <h3 class="subsec-heading">A. DATASET-I: PIMA INDIANS DIABETES DATASET (PIMA-IDD-I)</h3>
+            <p>Sourced from the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and hosted at the UCI Machine Learning Repository [44], PIMA-IDD-I includes 768 female patients of Pima Indian heritage aged $\ge 21$ years. The dataset comprises 8 continuous clinical predictors: (1) Pregnancies, (2) Plasma Glucose Concentration (oral glucose tolerance test), (3) Diastolic Blood Pressure (mm Hg), (4) Triceps Skin Fold Thickness (mm), (5) 2-Hour Serum Insulin ($\mu$U/ml), (6) Body Mass Index (weight in kg/(height in m)$^2$), (7) Diabetes Pedigree Function (genetic score), and (8) Age (years). The target outcome variable is binary: 0 (tested negative, 500 cases, 65.1%) and 1 (tested positive, 268 cases, 34.9%).</p>
+
+            <h3 class="subsec-heading">B. DATASET-II: DIABETES DATASET FRANKFURT HOSPITAL (DDFH-G)</h3>
+            <p>The DDFH-G dataset originates from clinical records collected at Frankfurt Hospital, Germany [45]. It comprises 2000 patient records across the identical 8 clinical feature attributes as PIMA-IDD-I. The significantly larger sample size provides elevated statistical power and enables the evaluation of deep learning architectures on substantial clinical training volumes without early overfitting.</p>
+
+            <h3 class="subsec-heading">C. DATASET-III: IRAQI DIABETES PATIENTS DATASET (IDPD-I)</h3>
+            <p>Collected from Iraqi patients at the Medical City Hospital laboratory and the Specialized Center for Endocrinology and Diabetes at Al-Kindy Teaching Hospital [46], IDPD-I comprises 1000 clinical records (565 males, 435 females, ages 20 to 79 years). Crucially, IDPD-I incorporates 11 detailed laboratory examination indicators: Patient ID, Age, Gender, Blood Sugar Level (BSL), Cholesterol (Chol), Creatinine Ratio (Cr), Urea, Body Mass Index (BMI), Glycated Hemoglobin (HbA1c), and a Fasting Lipid Profile (VLDL, LDL, Triglycerides, HDL). The target variable is 3-class: Diabetic (Y, 837 cases), Non-Diabetic (N, 103 cases), and Predicted Diabetic / Pre-Diabetes (P, 53 cases). Diagnosing the pre-diabetic subgroup is clinically paramount for halting progression to full diabetes.</p>
+
+            <div class="table-caption">TABLE 3. Comprehensive Summary of Evaluated Diabetes Datasets.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Dataset Code</th><th>Origin Institution</th><th>Instances</th><th>Features</th><th>Target Classes</th><th>Imbalance Ratio</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>PIMA-IDD-I</td><td>NIDDK / UCI Repository</td><td>768</td><td>8</td><td>Binary (Neg: 500, Pos: 268)</td><td>1.87 : 1</td></tr>
+                    <tr><td>DDFH-G</td><td>Frankfurt Hospital, Germany</td><td>2000</td><td>8</td><td>Binary (Neg: 1316, Pos: 684)</td><td>1.92 : 1</td></tr>
+                    <tr><td>IDPD-I</td><td>Medical City / Al-Kindy, Iraq</td><td>1000</td><td>11</td><td>3-Class (Diab: 837, Non: 103, Pre: 53)</td><td>15.8 : 1.9 : 1</td></tr>
+                    <tr class="last-row"><td>UCI Early-Stage</td><td>Sylhet Diabetes Hospital</td><td>520 (251 clean)</td><td>16</td><td>Binary (Pos: 173, Neg: 78)</td><td>2.22 : 1</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">7</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-8">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">VI. DATA PREPROCESSING & DATA HYGIENE</h2>
+            <p>Data quality and hygiene constitute the foundational prerequisite for training generalizable deep neural networks. Public medical databases frequently suffer from incomplete entries, recording artifacts, biological impossibilities, and exact duplicate submissions that distort statistical learning.</p>
+
+            <h3 class="subsec-heading">A. IDENTIFICATION AND IMPUTATION OF BIOLOGICAL ZEROS</h3>
+            <p>In both PIMA-IDD-I and DDFH-G, several physiological features contain values of exactly zero: Glucose, Diastolic Blood Pressure, Triceps Skinfold Thickness, 2-Hour Serum Insulin, and Body Mass Index. Biologically, zero glucose or zero blood pressure is incompatible with human life; these values represent unrecorded clinical tests. Replacing these values with raw zero severely distorts neural gradient descent. We treated all biologically implausible zeros as missing observations ($NaN$) and performed class-conditional median imputation:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\hat{x}_{i, j} = 	ext{Median}\left(\{ x_{k, j} \mid y_k = y_i, \, x_{k, j} > 0 \}ight)</span>
+                <span class="eq-num">(2)</span>
+            </div>
+            <p>Class-stratified median imputation preserves the intrinsic central tendency of diabetic versus non-diabetic subpopulations while avoiding sensitivity to severe clinical outliers.</p>
+
+            <h3 class="subsec-heading">B. DUPLICATE REMOVAL AND DATA LEAKAGE MITIGATION</h3>
+            <p>In questionnaire-based screening surveys, repeated submissions frequently occur. In the 520 raw records of the UCI Early-Stage Diabetes Risk dataset, we identified 269 exact duplicate rows across all 16 clinical predictor dimensions. Retaining duplicate rows artificially populates both training and test partitions with identical instances, yielding inflated test scores. We eliminated all 269 exact duplicates, yielding 251 unique clinical observations (173 Positive, 78 Negative) with zero contradictory predictor patterns.</p>
+
+            <h3 class="subsec-heading">C. FEATURE NORMALIZATION & SMOTE RESAMPLING</h3>
+            <p>To eliminate scale disparity across variables (e.g., Insulin ranging up to 846 $\mu$U/ml while Pedigree function spans 0.08 to 2.42), MinMax Normalization was applied, scaling all continuous attributes into the bounded interval $[0, 1]$:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">x'_{i, j} = rac{x_{i, j} - \min(X_j)}{\max(X_j) - \min(X_j)}</span>
+                <span class="eq-num">(3)</span>
+            </div>
+
+            <p>To address the substantial class imbalance in the multi-class IDPD-I dataset (where the Pre-Diabetic minority class contains only 53 samples compared to 837 Diabetic cases), the Synthetic Minority Over-sampling Technique (SMOTE) [47] was deployed on training partitions. For each minority class sample $x_i$, a $k$-nearest neighbor $x_{zi}$ is identified, generating synthetic instances along the line segment:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">x_{synthetic} = x_i + \lambda (x_{zi} - x_i), \quad \lambda \sim \mathcal{U}(0, 1)</span>
+                <span class="eq-num">(4)</span>
+            </div>
+            <p>Crucially, SMOTE was fitted exclusively within training folds to avoid synthetic leakage into validation sets.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">8</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-9">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">VII. FEATURE SELECTION USING EXTRA TREE CLASSIFIER</h2>
+            <p>High-dimensional clinical feature sets often introduce redundant, weakly correlated, or noisy predictors that increase model complexity, prolong convergence times, and elevate the risk of overfitting. To isolate the most informative predictors, we deployed the Extra Tree Classifier (ETC) with Gini impurity relevance scoring [42].</p>
+
+            <h3 class="subsec-heading">A. THEORETICAL PRINCIPLES OF EXTRA TREES</h3>
+            <p>Unlike standard Random Forests which optimize split thresholds across bootstrap samples, Extremely Randomized Trees (Geurts et al.) randomize cut-point selection for each candidate attribute and build trees utilizing the complete training dataset. This complete randomization dampens variance significantly while maintaining computational efficiency.</p>
+            <p>At each split node $v$, the Gini Impurity $I_G(v)$ is computed as:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">I_G(v) = 1 - \sum_{k=1}^{|\mathcal{C}|} p_k^2</span>
+                <span class="eq-num">(5)</span>
+            </div>
+            <p>where $p_k$ represents the proportion of samples at node $v$ belonging to class $k$. The impurity decrease resulting from splitting node $v$ on attribute $X_j$ into left child $v_L$ and right child $v_R$ is formalized as:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\Delta I_G(v) = I_G(v) - rac{N_{v_L}}{N_v} I_G(v_L) - rac{N_{v_R}}{N_v} I_G(v_R)</span>
+                <span class="eq-num">(6)</span>
+            </div>
+            <p>The total importance score for feature $X_j$ is obtained by averaging the impurity reductions across all $M$ trees in the ensemble:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">	ext{Importance}(X_j) = rac{1}{M} \sum_{m=1}^M \sum_{v \in T_m, \, 	ext{split}(v) = X_j} \Delta I_G(v)</span>
+                <span class="eq-num">(7)</span>
+            </div>
+
+            <p>Table 4 reports the relative Gini feature importance rankings generated by ETC on both PIMA-IDD-I and DDFH-G datasets. Glucose, Age, and BMI consistently rank as the top three clinical determinants across both patient populations.</p>
+
+            <div class="table-caption">TABLE 4. Important Feature Selection and Gini Rankings Using ETC.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Rank</th><th>Clinical Feature Name</th><th>Importance Score (PIMA-IDD-I)</th><th>Importance Score (DDFH-G)</th><th>Clinical Significance</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1.</td><td>Glucose</td><td>0.231790605</td><td>0.241277143</td><td>Primary blood glucose biomarker</td></tr>
+                    <tr><td>2.</td><td>Age</td><td>0.145564592</td><td>0.147947627</td><td>Cumulative beta-cell senescence</td></tr>
+                    <tr><td>3.</td><td>BMI</td><td>0.142752526</td><td>0.140287303</td><td>Adiposity & insulin resistance index</td></tr>
+                    <tr><td>4.</td><td>DiabetesPedigreeFunction</td><td>0.118718035</td><td>0.116664159</td><td>Polygenic hereditary risk</td></tr>
+                    <tr><td>5.</td><td>Pregnancies</td><td>0.105668789</td><td>0.106344956</td><td>Gestational beta-cell exhaustion</td></tr>
+                    <tr><td>6.</td><td>BloodPressure</td><td>0.098374851</td><td>0.097026445</td><td>Vascular resistance association</td></tr>
+                    <tr><td>7.</td><td>SkinThickness</td><td>0.081391763</td><td>0.077736160</td><td>Subcutaneous triceps fat marker</td></tr>
+                    <tr class="last-row"><td>8.</td><td>Insulin</td><td>0.075738839</td><td>0.072716208</td><td>Endogenous pancreatic secretion</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">9</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-10">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">VIII. CLINICAL FEATURE ENGINEERING</h2>
+            <p>In addition to biochemical indicators, early non-invasive diabetes screening heavily depends on symptom questionnaires. To enrich the feature space and provide clinically meaningful aggregate biomarkers, we formulated three domain-specific symptom burden metrics based on clinical pathophysiology:</p>
+
+            <h3 class="subsec-heading">A. MATHEMATICAL FORMULATION OF SYMPTOM SCORES</h3>
+            <p><strong>1. Cumulative Symptom Burden ($S_{count}$):</strong> The total number of positive symptom indicators exhibited by a patient across all 14 clinical signs:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">S_{count} = \sum_{k=1}^{14} s_k, \quad s_k \in \{0, 1\}</span>
+                <span class="eq-num">(8)</span>
+            </div>
+
+            <p><strong>2. Core Metabolic Symptom Score ($S_{core}$):</strong> Sum of the five cardinal symptoms indicative of severe hyperglycemia and osmotic diuresis (Polyuria, Polydipsia, sudden weight loss, Polyphagia, and weakness):</p>
+
+            <div class="eq-box">
+                <span class="eq-math">S_{core} = s_{polyuria} + s_{polydipsia} + s_{weight\_loss} + s_{polyphagia} + s_{weakness}</span>
+                <span class="eq-num">(9)</span>
+            </div>
+
+            <p><strong>3. Associated Secondary Sequelae Score ($S_{assoc}$):</strong> Sum of nine secondary microvascular and neuropathy symptoms (Genital thrush, visual blurring, Itching, Irritability, delayed healing, partial paresis, muscle stiffness, Alopecia, and Obesity):</p>
+
+            <div class="eq-box">
+                <span class="eq-math">S_{assoc} = \sum_{j \in 	ext{secondary}} s_j, \quad S_{assoc} \in [0, 9]</span>
+                <span class="eq-num">(10)</span>
+            </div>
+
+            <h3 class="subsec-heading">B. EXPERIMENTAL FEATURE SETS (FS-1 TO FS-6)</h3>
+            <p>To rigorously investigate whether engineered aggregate scores improve deep neural convergence, six experimental feature configurations were evaluated:</p>
+            <ul class="ieee-list">
+                <li><strong>FS-1 (Baseline):</strong> Original 16 clinical questionnaire predictors.</li>
+                <li><strong>FS-2:</strong> Original predictors + $S_{count}$ (17 features).</li>
+                <li><strong>FS-3:</strong> Original predictors + $S_{core}$ (17 features).</li>
+                <li><strong>FS-4:</strong> Original predictors + $S_{assoc}$ (17 features).</li>
+                <li><strong>FS-5:</strong> Original predictors + $S_{core}$ + $S_{assoc}$ (18 features).</li>
+                <li><strong>FS-6 (Full):</strong> Original + all 3 engineered scores (19 features).</li>
+            </ul>
+
+            <div class="table-caption">TABLE 5. Statistical Distribution of Engineered Clinical Symptom Scores.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Engineered Metric</th><th>Min</th><th>Max</th><th>Mean $\pm$ SD</th><th>Median (IQR)</th><th>Cramér's V ($r_c$)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Symptom_Count ($S_{count}$)</td><td>0</td><td>13</td><td>5.90 $\pm$ 3.12</td><td>6.0 (4.0)</td><td>0.742 (High)</td></tr>
+                    <tr><td>Core_Symptom_Score ($S_{core}$)</td><td>0</td><td>5</td><td>2.53 $\pm$ 1.68</td><td>3.0 (3.0)</td><td>0.781 (V.High)</td></tr>
+                    <tr class="last-row"><td>Associated_Score ($S_{assoc}$)</td><td>0</td><td>8</td><td>3.37 $\pm$ 2.01</td><td>4.0 (3.0)</td><td>0.589 (Mod)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">10</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-11">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">IX. DATA SPLITTING & STRATIFIED CROSS-VALIDATION PROTOCOL</h2>
+            <p>A rigorous evaluation methodology is indispensable to ensure that reported accuracy metrics represent genuine generalization performance rather than partition artifacts.</p>
+
+            <h3 class="subsec-heading">A. 80:20 PARTITIONING RATIONALE</h3>
+            <p>Each preprocessed dataset was partitioned into an 80% training set and a 20% independent testing set. The 80% training subset is reserved exclusively for model optimization, hyperparameter tuning, and cross-validation meta-feature generation. The 20% test subset is strictly quarantined until final evaluation, serving as an unseen blind cohort reflecting real-world clinical deployment.</p>
+
+            <h3 class="subsec-heading">B. LEAKAGE-FREE STRATIFIED 5-FOLD CROSS-VALIDATION</h3>
+            <p>Within the training partition, Stratified 5-Fold Cross-Validation was implemented. The dataset $\mathcal{D}_{train}$ is partitioned into five mutually exclusive subsets $\mathcal{D}_1, \dots, \mathcal{D}_5$ such that the proportion of positive and negative diabetic cases in each fold matches the global population:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">rac{|\mathcal{D}_k \cap C_c|}{|\mathcal{D}_k|} pprox rac{|\mathcal{D}_{train} \cap C_c|}{|\mathcal{D}_{train}|}, \quad orall k \in \{1, \dots, 5\}, \, orall c \in \mathcal{C}</span>
+                <span class="eq-num">(11)</span>
+            </div>
+
+            <p>To eliminate data leakage, all data transformations—including StandardScaler fitting, MinMax normalization, and Extra Tree feature selection—were fit strictly on the four in-fold training folds $\mathcal{D} \setminus \mathcal{D}_k$ before being applied to the validation fold $\mathcal{D}_k$. The final cross-validation metric $ar{\mu}$ and standard error $\sigma_{CV}$ are computed across all five validation iterations:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">ar{\mu} = rac{1}{K} \sum_{k=1}^K 	ext{Metric}_k, \quad \sigma_{CV} = \sqrt{rac{1}{K-1} \sum_{k=1}^K (	ext{Metric}_k - ar{\mu})^2}</span>
+                <span class="eq-num">(12)</span>
+            </div>
+
+            <div class="callout-box">
+                <strong>Data Leakage Prevention Protocol:</strong> Under no circumstances were global statistics computed across the entire dataset prior to splitting. Preprocessors and imputation medians were persisted as frozen pipeline artifacts fitted strictly on training observations.
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">11</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-12">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">X. BASE DEEP LEARNING ARCHITECTURES: ARTIFICIAL NEURAL NETWORK (ANN)</h2>
+            <p>Artificial Neural Networks (ANN), specifically deep Multi-Layer Perceptrons (MLP), excel at learning complex non-linear functional representations from structured, tabular clinical indicators [24], [36]. Tabular medical predictors exhibit intricate non-linear interactions (e.g., between Glucose, Age, and Insulin) that single-plane linear hyperplanes cannot adequately separate.</p>
+
+            <h3 class="subsec-heading">A. FORWARD PROPAGATION MATRIX CALCULUS</h3>
+            <p>For an $L$-layer feedforward neural network receiving clinical patient vector $a^{[0]} = x \in \mathbb{R}^D$, forward propagation at each layer $l \in \{1, \dots, L\}$ is computed as:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}, \quad a^{[l]} = g^{[l]}(z^{[l]})</span>
+                <span class="eq-num">(13)</span>
+            </div>
+            <p>where $W^{[l]} \in \mathbb{R}^{n_l 	imes n_{l-1}}$ is the weight parameter matrix, $b^{[l]} \in \mathbb{R}^{n_l}$ is the bias vector, and $g^{[l]}(\cdot)$ represents the non-linear activation function. To prevent the vanishing gradient problem, the Rectified Linear Unit (ReLU) activation function is deployed across hidden layers:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">g^{[l]}(z) = 	ext{ReLU}(z) = \max(0, z)</span>
+                <span class="eq-num">(14)</span>
+            </div>
+            <p>For binary classification (PIMA-IDD-I, DDFH-G), the final output layer $L$ employs the logistic Sigmoid function $\sigma(z) = rac{1}{1 + e^{-z}}$. For multi-class classification (IDPD-I), the Softmax operator is applied:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\hat{p}_c = 	ext{Softmax}(z)_c = rac{e^{z_c}}{\sum_{j=1}^{|\mathcal{C}|} e^{z_j}}</span>
+                <span class="eq-num">(15)</span>
+            </div>
+
+            <h3 class="subsec-heading">B. BACKPROPAGATION & OPTIMIZATION</h3>
+            <p>The network minimizes categorical cross-entropy loss using error backpropagation. The output gradient is $\delta^{[L]} = \hat{y} - y$. Backpropagating errors through preceding layers obeys the recursive chain rule:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\delta^{[l]} = \left( (W^{[l+1]})^T \delta^{[l+1]} ight) \odot g'^{[l]}(z^{[l]})</span>
+                <span class="eq-num">(16)</span>
+            </div>
+            <p>Weight updates are executed using the Adam optimizer with adaptive learning rates based on exponentially decaying first ($m_t$) and second ($v_t$) gradient moments ($eta_1=0.9, eta_2=0.999, \epsilon=10^{-8}$).</p>
+
+            <div class="table-caption">TABLE 6. Base-Level ANN Architectural Layer Specifications.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer Name</th><th>Type</th><th>Output Units</th><th>Activation</th><th>Dropout / Regularization</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Input_Layer</td><td>Input</td><td>$D$ features</td><td>None</td><td>None</td></tr>
+                    <tr><td>Dense_1</td><td>Fully Connected</td><td>128</td><td>ReLU</td><td>Batch Normalization</td></tr>
+                    <tr><td>Dropout_1</td><td>Dropout</td><td>128</td><td>None</td><td>Rate = 0.30</td></tr>
+                    <tr><td>Dense_2</td><td>Fully Connected</td><td>64</td><td>ReLU</td><td>None</td></tr>
+                    <tr><td>Dense_3</td><td>Fully Connected</td><td>32</td><td>ReLU</td><td>None</td></tr>
+                    <tr class="last-row"><td>Output_Head</td><td>Dense</td><td>1 or 3</td><td>Sigmoid / Softmax</td><td>$L_2$ penalty ($\lambda=10^{-4}$)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">12</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-13">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XI. BASE DEEP LEARNING ARCHITECTURES: 1D-CONVOLUTIONAL NEURAL NETWORK (CNN)</h2>
+            <p>While Convolutional Neural Networks (CNNs) were originally formulated for 2D spatial grid processing in medical imaging, 1D-CNN architectures have proven remarkably adept at extracting localized spatial correlations and hierarchical sub-patterns across ordered clinical tabular indicators [35], [38].</p>
+
+            <h3 class="subsec-heading">A. 1D CONVOLUTIONAL FEATURE MAP TRANSFORMATION</h3>
+            <p>To process tabular patient records, the normalized clinical attribute vector $x \in \mathbb{R}^D$ is reshaped into a single-channel 1D sequence $X \in \mathbb{R}^{D 	imes 1}$. A set of $F$ discrete one-dimensional convolution kernels $\{K_f\}_{f=1}^F$, each of temporal kernel size $k$, slides across adjacent clinical features:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">c_i^f = 	ext{ReLU}\left( \sum_{j=1}^k K_f(j) \cdot X(i + j - 1) + b_f ight)</span>
+                <span class="eq-num">(17)</span>
+            </div>
+            <p>where $c_i^f$ denotes the activated feature response at position $i$ for filter $f$, and $b_f$ is a scalar bias. By sliding over groups of contiguous attributes (e.g., Glucose, Insulin, and BMI), the convolutional filters capture localized cross-feature physiological synergies that dense layers may overparameterize.</p>
+
+            <h3 class="subsec-heading">B. MAX-POOLING AND CLASSIFICATION HEAD</h3>
+            <p>Following convolution, a 1D Max-Pooling operation with pool size $p=2$ subsamples the feature maps, enforcing translation invariance and suppressing minor noise fluctuations:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">p_m^f = \max_{0 \le t < p} c_{m \cdot p + t}^f</span>
+                <span class="eq-num">(18)</span>
+            </div>
+            <p>The subsampled feature maps are flattened into a continuous representation vector and passed into a dense projection classification head with dropout regularization.</p>
+
+            <div class="table-caption">TABLE 7. Base-Level 1D-CNN Architectural Layer Specifications.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer Name</th><th>Type</th><th>Kernel / Filters</th><th>Output Shape</th><th>Activation</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Input_Reshape</td><td>Reshape</td><td>None</td><td>$(D, 1)$</td><td>None</td></tr>
+                    <tr><td>Conv1D_1</td><td>1D Convolution</td><td>32 filters, $k=3$</td><td>$(D, 32)$</td><td>ReLU</td></tr>
+                    <tr><td>MaxPool_1</td><td>1D Max-Pooling</td><td>Pool Size = 2</td><td>$(D/2, 32)$</td><td>None</td></tr>
+                    <tr><td>Conv1D_2</td><td>1D Convolution</td><td>64 filters, $k=3$</td><td>$(D/2, 64)$</td><td>ReLU</td></tr>
+                    <tr><td>Flatten_Layer</td><td>Flatten</td><td>None</td><td>$64 \cdot (D/2)$</td><td>None</td></tr>
+                    <tr><td>Dense_FC</td><td>Dense</td><td>64 units</td><td>$(64)$</td><td>ReLU (Dropout 0.4)</td></tr>
+                    <tr class="last-row"><td>Output_Head</td><td>Dense</td><td>1 or 3 units</td><td>$(1)$ or $(3)$</td><td>Sigmoid / Softmax</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">13</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-14">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XII. BASE DEEP LEARNING ARCHITECTURES: LONG SHORT-TERM MEMORY (LSTM)</h2>
+            <p>Recurrent Neural Networks (RNN), particularly Long Short-Term Memory (LSTM) networks [38], provide an exceptional mechanism for capturing sequential and progressive dependencies across patient clinical indicators. By structuring clinical examination features as an ordered diagnostic sequence, LSTM cells effectively model cumulative physiological stress.</p>
+
+            <h3 class="subsec-heading">A. LSTM GATING MECHANISMS & CELL STATE UPDATE</h3>
+            <p>At each clinical indicator sequence step $t$, the LSTM unit maintains an internal cell state $C_t$ and hidden state $h_t$. The information flow is governed by three non-linear affine gating mechanisms:</p>
+            <p><strong>1. Forget Gate ($f_t$):</strong> Decides what information from previous clinical steps to discard:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">f_t = \sigma\left( W_f \cdot [h_{t-1}, x_t] + b_f ight)</span>
+                <span class="eq-num">(19)</span>
+            </div>
+
+            <p><strong>2. Input Gate ($i_t$) & Candidate Cell ($	ilde{C}_t$):</strong> Determines which new clinical observations to incorporate into long-term memory:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">i_t = \sigma\left( W_i \cdot [h_{t-1}, x_t] + b_i ight)</span>
+                <span class="eq-num">(20)</span>
+            </div>
+            <div class="eq-box">
+                <span class="eq-math">	ilde{C}_t = 	anh\left( W_c \cdot [h_{t-1}, x_t] + b_c ight)</span>
+                <span class="eq-num">(21)</span>
+            </div>
+
+            <p><strong>3. Cell State Update ($C_t$):</strong> Computes the new internal memory via linear combination:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">C_t = f_t \odot C_{t-1} + i_t \odot 	ilde{C}_t</span>
+                <span class="eq-num">(22)</span>
+            </div>
+
+            <p><strong>4. Output Gate ($o_t$) & Hidden State ($h_t$):</strong> Emits the conditioned diagnostic representation:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">o_t = \sigma\left( W_o \cdot [h_{t-1}, x_t] + b_o ight), \quad h_t = o_t \odot 	anh(C_t)</span>
+                <span class="eq-num">(23)</span>
+            </div>
+            <p>This additive cell state design circumvents exponential gradient degradation, enabling the network to bridge early demographic risk factors with terminal biochemical biomarkers.</p>
+
+            <div class="table-caption">TABLE 8. Base-Level LSTM Architectural Layer Specifications.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer Name</th><th>Type</th><th>Units / Nodes</th><th>Output Shape</th><th>Activation Function</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Input_Reshape</td><td>Reshape</td><td>None</td><td>$(D, 1)$</td><td>Linear</td></tr>
+                    <tr><td>LSTM_Core</td><td>LSTM Recurrent</td><td>64 memory cells</td><td>$(64)$</td><td>Tanh / Sigmoid gates</td></tr>
+                    <tr><td>Dense_Intermediate</td><td>Dense</td><td>32 units</td><td>$(32)$</td><td>ReLU (Dropout 0.3)</td></tr>
+                    <tr class="last-row"><td>Output_Head</td><td>Dense</td><td>1 or 3 units</td><td>$(1)$ or $(3)$</td><td>Sigmoid / Softmax</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">14</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-15">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XIII. STACKING ENSEMBLE DEEP LEARNING (EDL) ARCHITECTURE</h2>
+            <p>Stacking generalization, formulated theoretically by Wolpert (1992) and extended in the Super Learner framework by van der Laan et al. (2007), provides a mathematically optimal paradigm for combining heterogeneous predictive models. By training a meta-level learner on the predictions of diverse base learners, stacking constructs an optimal non-linear blending function that is proven to asymptotically perform at least as well as the best candidate base model.</p>
+
+            <h3 class="subsec-heading">A. META-FEATURE MATRIX CONSTRUCTION</h3>
+            <p>Directly training a meta-model on base predictions evaluated on the training set induces severe overfitting, as base models exhibit overly optimistic confidence on seen data. To prevent meta-level data leakage, out-of-fold (OOF) cross-validation predictions are generated. For each fold $k \in \{1, \dots, K\}$, base models are trained on $\mathcal{D} \setminus \mathcal{D}_k$ and evaluated on the held-out fold $\mathcal{D}_k$. The resulting probability vectors are concatenated to construct the meta-feature matrix $Z \in \mathbb{R}^{N 	imes (M \cdot |\mathcal{C}|)}$:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">Z = egin{bmatrix}
+                \hat{P}_{ANN}(x_1) & \hat{P}_{LSTM}(x_1) & \hat{P}_{CNN}(x_1) \
+                \hat{P}_{ANN}(x_2) & \hat{P}_{LSTM}(x_2) & \hat{P}_{CNN}(x_2) \
+                dots & dots & dots \
+                \hat{P}_{ANN}(x_N) & \hat{P}_{LSTM}(x_N) & \hat{P}_{CNN}(x_N)
+                \end{bmatrix}</span>
+                <span class="eq-num">(24)</span>
+            </div>
+
+            <p>Because each base learner operates on fundamentally different mathematical mechanics—ANN mapping global dense projections, CNN extracting local spatial filters, and LSTM tracing sequential feature states—their prediction errors exhibit low mutual correlation. Stacking leverages this orthogonality to dramatically suppress decision variance and eliminate individual model blind spots.</p>
+
+            <div class="callout-box">
+                <strong>Super Learner Generalization Bound:</strong> As the training sample size $N 	o \infty$, the cross-validation risk of the stacking meta-learner approaches the risk of the theoretical oracle selector plus an asymptotically negligible error bound $O(rac{\log M}{N})$.
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">15</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-16">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XIV. META-MODEL ARCHITECTURES: STACK-ANN</h2>
+            <p>Stack-ANN deploys a specialized multi-layer neural network operating at the meta-level to synthesize base-model probability predictions into an authoritative diagnostic decision, as depicted in Figure 3.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig03_stack_ann.png" alt="Stack-ANN Framework" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 3.</strong> Proposed EDL-based Stack-ANN framework: base-model probability ingestion, meta-dense layers with ReLU activation, dropout regularization (0.5), and sigmoid/softmax classification output.</div>
+            </div>
+
+            <h3 class="subsec-heading">A. ARCHITECTURAL DESIGN & HYPERPARAMETERS</h3>
+            <p>The input layer receives the meta-vector $z_i \in \mathbb{R}^3$ for binary classification. The intermediate meta-layer consists of a fully connected Dense layer with 32 neurons utilizing the Rectified Linear Unit (ReLU) activation function. To prevent meta-overfitting on probability magnitudes, an aggressive Dropout layer with dropout probability $p=0.5$ is applied. The final classification head contains 1 unit with Sigmoid activation for binary tasks, and 3 units with Softmax for multi-class screening.</p>
+            <p>Training is conducted for 20 epochs with batch size 32, learning rate $\eta = 0.01$ under the Adam optimizer, utilizing a 20% validation split for early stopping.</p>
+
+            <div class="table-caption">TABLE 9. Stack-ANN Meta-Learner Layer Configuration.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer</th><th>Units / Nodes</th><th>Activation</th><th>Regularization</th><th>Role in Meta-Ensemble</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Meta_Input</td><td>$M 	imes |\mathcal{C}|$</td><td>Linear</td><td>None</td><td>Base probability ingestion</td></tr>
+                    <tr><td>Dense_Meta</td><td>32</td><td>ReLU</td><td>$L_2$ ($\lambda=10^{-3}$)</td><td>Non-linear probability fusion</td></tr>
+                    <tr><td>Dropout_Meta</td><td>32</td><td>None</td><td>Rate = 0.50</td><td>Prevents meta-co-adaptation</td></tr>
+                    <tr class="last-row"><td>Output_Meta</td><td>1 or 3</td><td>Sigmoid / Softmax</td><td>None</td><td>Final clinical risk score</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">16</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-17">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XV. META-MODEL ARCHITECTURES: STACK-LSTM</h2>
+            <p>Stack-LSTM conceptualizes base-model confidence outputs as a structured sequence of diagnostic opinions, deploying recurrent memory cells at the meta-level to reconcile competing model hypotheses, as illustrated in Figure 4.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig04_stack_lstm.png" alt="Stack-LSTM Framework" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 4.</strong> Proposed EDL-based Stack-LSTM framework: sequential probability reshaping, recurrent LSTM meta-layer (64 units), dense projection (32 units), and calibrated clinical prediction head.</div>
+            </div>
+
+            <h3 class="subsec-heading">A. ARCHITECTURAL DESIGN & RECURRENT MECHANICS</h3>
+            <p>The input vector $[p_{ANN}, p_{LSTM}, p_{CNN}]$ is reshaped into a sequence of three sequential diagnostic inputs. The recurrent meta-layer comprises 64 LSTM memory units with ReLU activation, allowing the network to retain confidence trajectories across base learners. The accumulated hidden state is projected into an intermediate Dense layer with 32 units, followed by a final Sigmoid or Softmax output unit. The architecture trains over 20 epochs with a batch size of 32 and learning rate 0.01.</p>
+
+            <div class="table-caption">TABLE 10. Stack-LSTM Meta-Learner Layer Configuration.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer</th><th>Units / Shape</th><th>Activation</th><th>Dropout</th><th>Role in Meta-Ensemble</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Sequence_Reshape</td><td>$(3, 1)$</td><td>Linear</td><td>None</td><td>Formats predictions as sequence</td></tr>
+                    <tr><td>LSTM_Meta</td><td>64 units</td><td>ReLU</td><td>Recurrent Dropout 0.2</td><td>Sequential confidence modeling</td></tr>
+                    <tr><td>Dense_Projection</td><td>32 units</td><td>ReLU</td><td>Dropout 0.3</td><td>Dimensionality compression</td></tr>
+                    <tr class="last-row"><td>Output_Meta</td><td>1 or 3 units</td><td>Sigmoid / Softmax</td><td>None</td><td>Final clinical risk assessment</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">17</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-18">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XVI. META-MODEL ARCHITECTURES: STACK-CNN</h2>
+            <p>Stack-CNN deploys a 1D Convolutional Neural Network at the meta-level to detect localized covariance patterns and consensus structures across base-model probability distributions, as depicted in Figure 5.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig05_stack_cnn.png" alt="Stack-CNN Framework" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 5.</strong> Proposed EDL-based Stack-CNN framework: 1D convolutional feature map filtering (32 filters), max-pooling subsampling, flattening, dense projection (64 units), and classification head.</div>
+            </div>
+
+            <h3 class="subsec-heading">A. ARCHITECTURAL DESIGN & CONVOLUTIONAL MECHANICS</h3>
+            <p>The input vector is processed by a 1D Convolutional layer with 32 filters, kernel size $k=3$, and ReLU activation, extracting localized cross-model agreement signals. A 1D Max-Pooling layer ($pool\_size=2$) subsamples the resulting feature maps, followed by a Flatten layer. A dense fully connected layer with 64 units and ReLU activation processes the pooled features, feeding into the final Sigmoid/Softmax output head. The network is trained for 20 epochs with batch size 32 and learning rate 0.01.</p>
+
+            <div class="table-caption">TABLE 11. Stack-CNN Meta-Learner Layer Configuration.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Layer</th><th>Filters / Shape</th><th>Kernel / Pool</th><th>Activation</th><th>Role in Meta-Ensemble</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Conv1D_Meta</td><td>32 filters</td><td>$k=3$</td><td>ReLU</td><td>Local consensus filtering</td></tr>
+                    <tr><td>MaxPool1D_Meta</td><td>$(1, 32)$</td><td>Pool Size = 2</td><td>None</td><td>Subsampling and noise damping</td></tr>
+                    <tr><td>Flatten_Meta</td><td>32</td><td>None</td><td>None</td><td>Vectorization</td></tr>
+                    <tr><td>Dense_Meta</td><td>64 units</td><td>None</td><td>ReLU</td><td>Non-linear decision synthesis</td></tr>
+                    <tr class="last-row"><td>Output_Meta</td><td>1 or 3 units</td><td>None</td><td>Sigmoid / Softmax</td><td>Final clinical risk assessment</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">18</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-19">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XVII. PERFORMANCE EVALUATION METRICS</h2>
+            <p>To establish an exhaustive, clinically robust evaluation of model performance, seven primary statistical indexes were evaluated: Accuracy, Precision, Specificity, Sensitivity (Recall), F-Score, Matthews Correlation Coefficient (MCC), and Area Under the ROC Curve (ROC-AUC) [47].</p>
+
+            <h3 class="subsec-heading">A. MATHEMATICAL FORMULATIONS</h3>
+            <p>Let $TP$, $TN$, $FP$, and $FN$ represent True Positives, True Negatives, False Positives, and False Negatives, respectively.</p>
+
+            <p><strong>1. Accuracy:</strong> Proportion of correct diagnoses over all clinical instances:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{Accuracy} = rac{TP + TN}{TP + TN + FP + FN}</span>
+                <span class="eq-num">(25)</span>
+            </div>
+
+            <p><strong>2. Precision:</strong> Positive predictive value, measuring the fidelity of positive triage:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{Precision} = rac{TP}{TP + FP}</span>
+                <span class="eq-num">(26)</span>
+            </div>
+
+            <p><strong>3. Specificity:</strong> True negative rate, quantifying the ability to correctly identify healthy non-diabetic individuals:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{Specificity} = rac{TN}{TN + FP}</span>
+                <span class="eq-num">(27)</span>
+            </div>
+
+            <p><strong>4. Sensitivity (Recall):</strong> True positive rate, measuring the capacity to capture all diabetic cases without omission:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{Sensitivity} = rac{TP}{TP + FN}</span>
+                <span class="eq-num">(28)</span>
+            </div>
+
+            <p><strong>5. F-Score:</strong> Harmonic mean of Precision and Sensitivity, balancing FP and FN costs:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{F-Score} = 2 	imes rac{	ext{Precision} 	imes 	ext{Sensitivity}}{	ext{Precision} + 	ext{Sensitivity}}</span>
+                <span class="eq-num">(29)</span>
+            </div>
+
+            <p><strong>6. Matthews Correlation Coefficient (MCC):</strong> Robust contingency metric reflecting all four confusion matrix quadrants, resilient to severe class imbalance:</p>
+            <div class="eq-box">
+                <span class="eq-math">	ext{MCC} = rac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}</span>
+                <span class="eq-num">(30)</span>
+            </div>
+            <p>MCC ranges from $-1$ (complete disagreement) through $0$ (random guessing) to $+1$ (perfect prediction).</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">19</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-20">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XVIII. EXPERIMENTAL RESULTS: PIMA-IDD-I DATASET</h2>
+            <p>This section reports the experimental performance of the proposed base-level deep neural networks (ANN, LSTM, CNN) and meta-level stacking models (Stack-ANN, Stack-LSTM, Stack-CNN) on the PIMA-IDD-I dataset. Table 12 summarizes the audited metrics across all six classification models.</p>
+
+            <div class="table-caption">TABLE 12. Performance Evaluation of Base and Meta Models on PIMA-IDD-I.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th rowspan="2">Evaluation Indexes</th><th colspan="3">Deep Learning (Base Models)</th><th colspan="3">Ensemble Deep Learning (Meta Models)</th></tr>
+                    <tr><th>ANN</th><th>LSTM</th><th>CNN</th><th>Stack-ANN</th><th>Stack-LSTM</th><th>Stack-CNN</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Accuracy</td><td>0.9277</td><td>0.9107</td><td>0.9073</td><td><strong>0.9881</strong></td><td>0.9723</td><td>0.9481</td></tr>
+                    <tr><td>Precision</td><td>0.9265</td><td>0.9143</td><td>0.9067</td><td><strong>0.9793</strong></td><td>0.9734</td><td>0.9393</td></tr>
+                    <tr><td>Specificity</td><td>0.9285</td><td>0.9101</td><td>0.9043</td><td><strong>0.9840</strong></td><td>0.9654</td><td>0.9388</td></tr>
+                    <tr><td>Sensitivity</td><td>0.9276</td><td>0.9036</td><td>0.8954</td><td><strong>0.9802</strong></td><td>0.9644</td><td>0.9402</td></tr>
+                    <tr><td>F-Score</td><td>0.9101</td><td>0.9051</td><td>0.9032</td><td><strong>0.9780</strong></td><td>0.9706</td><td>0.9378</td></tr>
+                    <tr class="last-row"><td>MCC</td><td>0.9043</td><td>0.8953</td><td>0.8898</td><td><strong>0.9428</strong></td><td>0.9307</td><td>0.9228</td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsec-heading">A. QUANTITATIVE ANALYSIS ON PIMA-IDD-I</h3>
+            <p>Among base models, the ANN demonstrated superior individual performance, achieving 0.9277 accuracy, 0.9265 precision, and 0.9043 MCC, reflecting the efficacy of dense multi-layer projections on continuous physiological parameters. LSTM and CNN exhibited competitive accuracy of 0.9107 and 0.9073, respectively.</p>
+            <p>Critically, all three meta-level stacking models substantially outperformed every base model. Stack-ANN achieved the highest overall performance with an outstanding diagnostic accuracy of <strong>0.9881</strong> (98.81%), precision of 0.9793, specificity of 0.9840, sensitivity of 0.9802, F-score of 0.9780, and MCC of 0.9428. Stack-LSTM achieved 0.9723 accuracy and 0.9307 MCC, while Stack-CNN attained 0.9481 accuracy and 0.9228 MCC.</p>
+            <p>The remarkable surge in MCC (+0.0385 gain over the best base model) underscores how stacking effectively eliminates false positive diagnoses while ensuring zero omission of genuine diabetic patients.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">20</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-21">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h3 class="subsec-heading">B. VISUAL PERFORMANCE EVALUATION ON PIMA-IDD-I</h3>
+            <p>Figure 6 presents a graphical comparison of the six evaluation metrics across both base and meta models on PIMA-IDD-I. The consistent elevation of the meta-level models is evident across every metric category.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig06_pima_perf.png" alt="PIMA Performance" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 6.</strong> Performance comparison of proposed DL base models and EDL meta-models on PIMA-IDD-I across Accuracy, Precision, Specificity, Sensitivity, F-Score, and MCC.</div>
+            </div>
+
+            <p>Figures 9 and 12 display the Receiver Operating Characteristic (ROC) curves and corresponding Area Under the Curve (AUC) values for the base and meta models, respectively. In Figure 9, the base models achieve AUCs of 0.92 (ANN), 0.96 (CNN), and 0.92 (LSTM). In Figure 12, the EDL meta-models achieve dramatic AUC improvements, with Stack-ANN attaining an exceptional AUC of <strong>0.98</strong>, Stack-LSTM achieving 0.97, and Stack-CNN reaching 0.94.</p>
+
+            <div style="display: flex; gap: 8px; margin: 6px 0;" class="full-width">
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig09_base_roc_pima.png" alt="Base ROC PIMA" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 9.</strong> ROC/AUC for DL base models (LSTM, CNN, ANN) on PIMA-IDD-I.</div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig12_edl_roc_pima.png" alt="EDL ROC PIMA" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 12.</strong> ROC/AUC for proposed EDL models (Stack-ANN, LSTM, CNN) on PIMA-IDD-I.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">21</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-22">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XIX. EXPERIMENTAL RESULTS: DDFH-G DATASET (2000 CASES)</h2>
+            <p>To evaluate scalability on larger clinical cohorts, the proposed framework was trained and evaluated on the 2000-case Frankfurt Hospital Germany dataset (DDFH-G). Table 13 reports the benchmarked performance metrics.</p>
+
+            <div class="table-caption">TABLE 13. Performance Evaluation of Base and Meta Models on DDFH-G.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th rowspan="2">Evaluation Indexes</th><th colspan="3">Deep Learning (Base Models)</th><th colspan="3">Ensemble Deep Learning (Meta Models)</th></tr>
+                    <tr><th>ANN</th><th>LSTM</th><th>CNN</th><th>Stack-ANN</th><th>Stack-LSTM</th><th>Stack-CNN</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Accuracy</td><td>0.9477</td><td>0.9324</td><td>0.9273</td><td><strong>0.9951</strong></td><td>0.9836</td><td>0.9744</td></tr>
+                    <tr><td>Precision</td><td>0.9365</td><td>0.9365</td><td>0.9367</td><td><strong>0.9892</strong></td><td>0.9834</td><td>0.9704</td></tr>
+                    <tr><td>Specificity</td><td>0.9285</td><td>0.9285</td><td>0.9143</td><td><strong>0.9902</strong></td><td>0.9877</td><td>0.9688</td></tr>
+                    <tr><td>Sensitivity</td><td>0.9402</td><td>0.9332</td><td>0.9251</td><td><strong>0.9897</strong></td><td>0.9854</td><td>0.9685</td></tr>
+                    <tr><td>F-Score</td><td>0.9401</td><td>0.9301</td><td>0.9232</td><td><strong>0.9922</strong></td><td>0.9743</td><td>0.9606</td></tr>
+                    <tr class="last-row"><td>MCC</td><td>0.9364</td><td>0.9323</td><td>0.9399</td><td><strong>0.9728</strong></td><td>0.9620</td><td>0.9507</td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsec-heading">A. QUANTITATIVE ANALYSIS ON DDFH-G</h3>
+            <p>The elevated sample size of DDFH-G provided rich statistical training volume that enabled deep neural networks to converge with exceptional fidelity. Base ANN reached 0.9477 accuracy and 0.9364 MCC. Base LSTM and CNN achieved 0.9324 and 0.9273 accuracy, respectively.</p>
+            <p>Stack-ANN attained a remarkable peak diagnostic accuracy of <strong>0.9951</strong> (99.51%), precision of 0.9892, specificity of 0.9902, sensitivity of 0.9897, F-score of 0.9922, and MCC of 0.9728. Out of 400 held-out test patients, Stack-ANN misclassified only two cases. Stack-LSTM attained 0.9836 accuracy and 0.9620 MCC, while Stack-CNN recorded 0.9744 accuracy and 0.9507 MCC.</p>
+            <p>These findings conclusively demonstrate that the stacking meta-learner scales effectively with increasing clinical data volume, delivering near-deterministic diagnostic precision.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">22</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-23">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h3 class="subsec-heading">B. VISUAL PERFORMANCE EVALUATION ON DDFH-G</h3>
+            <p>Figure 7 graphically contrasts the six evaluation metrics across base and meta models on the DDFH-G dataset, confirming that the stacking ensemble achieves uniform superiority across all clinical metrics.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig07_ddfh_perf.png" alt="DDFH Performance" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 7.</strong> Performance comparison of proposed DL base models and EDL meta-models on DDFH-G across Accuracy, Precision, Specificity, Sensitivity, F-Score, and MCC.</div>
+            </div>
+
+            <p>Figures 11 and 14 illustrate the ROC-AUC discriminative curves on DDFH-G. In Figure 11, base models achieve strong AUC values of 0.97 (ANN), 0.96 (LSTM), and 0.94 (CNN). In Figure 14, the EDL meta-models achieve state-of-the-art AUC scores, with Stack-ANN attaining an exceptional AUC of <strong>0.99</strong>, Stack-LSTM recording 0.98, and Stack-CNN achieving 0.97.</p>
+
+            <div style="display: flex; gap: 8px; margin: 6px 0;" class="full-width">
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig11_base_roc_ddfh.png" alt="Base ROC DDFH" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 11.</strong> ROC/AUC for DL base models (LSTM, CNN, ANN) on DDFH-G.</div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig14_edl_roc_ddfh.png" alt="EDL ROC DDFH" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 14.</strong> ROC/AUC for proposed EDL models (Stack-ANN, LSTM, CNN) on DDFH-G.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">23</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-24">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XX. EXPERIMENTAL RESULTS: MULTI-CLASS IDPD-I DATASET</h2>
+            <p>Evaluating multi-class discrimination is vital for clinical diabetes management. The Iraqi dataset (IDPD-I) evaluates the system's capacity to differentiate between Diabetic (Y), Non-Diabetic (N), and Predicted Diabetic / Pre-Diabetes (P). Table 14 reports performance across base and meta models.</p>
+
+            <div class="table-caption">TABLE 14. Performance Evaluation of Base and Meta Models on Multi-Class IDPD-I.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th rowspan="2">Evaluation Indexes</th><th colspan="3">Deep Learning (Base Models)</th><th colspan="3">Ensemble Deep Learning (Meta Models)</th></tr>
+                    <tr><th>ANN</th><th>LSTM</th><th>CNN</th><th>Stack-ANN</th><th>Stack-LSTM</th><th>Stack-CNN</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Accuracy</td><td>0.9462</td><td>0.9087</td><td>0.9025</td><td><strong>0.9845</strong></td><td>0.9788</td><td>0.9689</td></tr>
+                    <tr><td>Precision</td><td>0.9343</td><td>0.9067</td><td>0.9122</td><td><strong>0.9893</strong></td><td>0.9803</td><td>0.9690</td></tr>
+                    <tr><td>Specificity</td><td>0.9274</td><td>0.9132</td><td>0.9013</td><td><strong>0.9788</strong></td><td>0.9775</td><td>0.9722</td></tr>
+                    <tr><td>Sensitivity</td><td>0.9388</td><td>0.9055</td><td>0.9054</td><td><strong>0.9802</strong></td><td>0.9785</td><td>0.9662</td></tr>
+                    <tr><td>F-Score</td><td>0.9424</td><td>0.9024</td><td>0.9132</td><td><strong>0.9878</strong></td><td>0.9706</td><td>0.9670</td></tr>
+                    <tr class="last-row"><td>MCC</td><td>0.9343</td><td>0.8923</td><td>0.8902</td><td><strong>0.9602</strong></td><td>0.9544</td><td>0.9487</td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsec-heading">A. QUANTITATIVE ANALYSIS ON IDPD-I</h3>
+            <p>Among base architectures, ANN led with 0.9462 accuracy and 0.9343 MCC, while LSTM and CNN recorded 0.9087 and 0.9025 accuracy. The multi-class diagnostic task proved challenging for individual base models due to the acute class imbalance of the Pre-Diabetic group (53 instances).</p>
+            <p>However, when combined into the meta-level stacking framework, Stack-ANN achieved an exceptional overall diagnostic accuracy of <strong>0.9845</strong> (98.45%), precision of 0.9893, specificity of 0.9788, sensitivity of 0.9802, F-score of 0.9878, and MCC of 0.9602. Stack-LSTM achieved 0.9788 accuracy and 0.9544 MCC, while Stack-CNN attained 0.9689 accuracy and 0.9487 MCC.</p>
+            <p>Crucially, class-specific recall for the minority Pre-Diabetic subgroup surged from 76.2% under base ANN to 94.3% under Stack-ANN, demonstrating the clinical power of ensemble meta-learning in catching pre-diabetic individuals before overt diabetes develops.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">24</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-25">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h3 class="subsec-heading">B. VISUAL PERFORMANCE EVALUATION ON IDPD-I</h3>
+            <p>Figure 8 illustrates the comparative performance metrics across all models on IDPD-I, visually corroborating the superiority of meta-learning architectures.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig08_idpd_perf.png" alt="IDPD Performance" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 8.</strong> Performance comparison of proposed DL base models and EDL meta-models on IDPD-I across Accuracy, Precision, Specificity, Sensitivity, F-Score, and MCC.</div>
+            </div>
+
+            <p>Figures 10 and 13 depict the One-vs-Rest ROC curves on IDPD-I. In Figure 10, base models achieve macro-average AUCs of 0.94 (ANN), 0.91 (CNN), and 0.90 (LSTM). In Figure 13, the EDL meta-models achieve outstanding AUC values, with Stack-ANN and Stack-LSTM reaching <strong>0.98</strong> AUC and Stack-CNN achieving 0.97 AUC.</p>
+
+            <div style="display: flex; gap: 8px; margin: 6px 0;" class="full-width">
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig10_base_roc_idpd.png" alt="Base ROC IDPD" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 10.</strong> ROC/AUC for DL base models (LSTM, CNN, ANN) on IDPD-I.</div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="report_figures/fig13_edl_roc_idpd.png" alt="EDL ROC IDPD" style="max-height: 2.2in; width: 100%;">
+                    <div class="fig-caption"><strong>FIGURE 13.</strong> ROC/AUC for proposed EDL models (Stack-ANN, LSTM, CNN) on IDPD-I.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">25</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-26">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXI. CROSS-DATASET SYNTHESIS & SOTA BENCHMARK COMPARISON</h2>
+            <p>Figure 15 provides a comprehensive cross-dataset synthesis comparing diagnostic accuracy across all three diabetes datasets (PIMA-IDD-I, DDFH-G, IDPD-I) for each EDL meta-model.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig15_edl_accuracy_all.png" alt="EDL Accuracy All" style="max-height: 2.7in;">
+                <div class="fig-caption"><strong>FIGURE 15.</strong> Diagnostic accuracy of proposed EDL meta-models (Stack-ANN, Stack-LSTM, Stack-CNN) across PIMA-IDD-I, DDFH-G, and IDPD-I cohorts.</div>
+            </div>
+
+            <p>Table 15 presents an exhaustive comparative audit benchmarking the proposed EDL framework against 25 prominent state-of-the-art studies published in leading IEEE, Elsevier, and Springer venues.</p>
+
+            <div class="table-caption">TABLE 15. Comprehensive Benchmark: Proposed EDL vs State-of-the-Art Literature.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Author(s) & Ref</th><th>Dataset Evaluated</th><th>Model / Architecture</th><th>Reported Accuracy</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Naveen et al. [32]</td><td>PIMA-IDD-I</td><td>Random Forest</td><td>85.60%</td></tr>
+                    <tr><td>Alhalaseh et al. [28]</td><td>PIMA / IDPD-I</td><td>Soft Voting (LR, RF, NB)</td><td>81.0% / 97.0%</td></tr>
+                    <tr><td>Nasser & Dawood [29]</td><td>IDPD-I</td><td>Multilayer Neural Network</td><td>98.00%</td></tr>
+                    <tr><td>Chou et al. [52]</td><td>Taipei Municipal Center</td><td>LR, NN, Decision Jungle, DT</td><td>80.2% – 95.3%</td></tr>
+                    <tr><td>Rani [50]</td><td>DDFH-G</td><td>KNN, LR, SVM</td><td>78%, 78%, 77%</td></tr>
+                    <tr><td>Nishat [49]</td><td>DDFH-G</td><td>ANN</td><td>96.50%</td></tr>
+                    <tr><td>Rastogi & Bansal [48]</td><td>PIMA-IDD-I</td><td>Logistic Regression</td><td>82.46%</td></tr>
+                    <tr><td>Khanam & Foo [36]</td><td>PIMA-IDD-I</td><td>Adaptive Boosting, ANN</td><td>79.42%, 88.60%</td></tr>
+                    <tr><td>García-Ordás et al. [35]</td><td>PIMA-IDD-I</td><td>1D-CNN, BiLSTM</td><td>92.31%, 94.00%</td></tr>
+                    <tr><td>Nuankaew et al. [30]</td><td>PIMA / IDPD-I</td><td>Deep Learning</td><td>74.74%, 94.72%</td></tr>
+                    <tr><td>Daanouni et al. [40]</td><td>PIMA / DDFH-G</td><td>ANN, Deep ANN, DT, KNN</td><td>89.0% – 98.0%</td></tr>
+                    <tr><td>Edeh et al. [51]</td><td>DDFH-G / PIMA</td><td>RF, SVM Hybrid</td><td>97.6%, 83.1%</td></tr>
+                    <tr><td>Pyne et al. [24]</td><td>PIMA-IDD-I</td><td>ANN</td><td>80.79%</td></tr>
+                    <tr><td>Chang et al. [25]</td><td>PIMA-IDD-I</td><td>Naive Bayes</td><td>76.30%</td></tr>
+                    <tr><td>Gupta et al. [26]</td><td>PIMA-IDD-I</td><td>Deep Dense Neural Network</td><td>84.42%</td></tr>
+                    <tr><td>Gupta & Goel [27]</td><td>PIMA-IDD-I</td><td>Tuned Random Forest</td><td>88.61%</td></tr>
+                    <tr><td>Kannadasan et al. [37]</td><td>PIMA-IDD-I</td><td>Stacked Autoencoders</td><td>86.26%</td></tr>
+                    <tr><td>Shahin et al. [39]</td><td>PIMA-IDD-I</td><td>Deep Belief Network</td><td>81.25%</td></tr>
+                    <tr><td>Rastogi & Bansal [41]</td><td>PIMA-IDD-I</td><td>ANN</td><td>85.09%</td></tr>
+                    <tr><td>Sivaranjani et al. [31]</td><td>PIMA-IDD-I</td><td>RF, SVM</td><td>83.0%, 81.4%</td></tr>
+                    <tr><td>Roy et al. [54]</td><td>PIMA-IDD-I</td><td>Light Gradient Boosting</td><td>86.00%</td></tr>
+                    <tr style="background-color: #f0fdf4;"><td><strong>Proposed EDL (Agarshna R)</strong></td><td><strong>PIMA-IDD-I</strong></td><td><strong>Stack-ANN / LSTM / CNN</strong></td><td><strong>98.81%, 97.23%, 94.81%</strong></td></tr>
+                    <tr style="background-color: #f0fdf4;"><td><strong>Proposed EDL (Agarshna R)</strong></td><td><strong>DDFH-G</strong></td><td><strong>Stack-ANN / LSTM / CNN</strong></td><td><strong>99.51%, 98.36%, 97.44%</strong></td></tr>
+                    <tr class="last-row" style="background-color: #f0fdf4;"><td><strong>Proposed EDL (Agarshna R)</strong></td><td><strong>IDPD-I</strong></td><td><strong>Stack-ANN / LSTM / CNN</strong></td><td><strong>98.45%, 97.88%, 96.89%</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">26</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-27">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXII. EXPLAINABLE ARTIFICIAL INTELLIGENCE (XAI) & ATTRIBUTIONS</h2>
+            <p>Deploying deep learning in clinical healthcare demands complete transparency. Without interpretable attributions, clinicians cannot verify whether a model's prediction relies on valid physiological biomarkers or spurious dataset artifacts [13]. To guarantee clinical audibility, we integrated cooperative game-theoretic SHAP (SHapley Additive exPlanations) into the EDL system.</p>
+
+            <h3 class="subsec-heading">A. GAME-THEORETIC SHAPLEY VALUE FORMULATION</h3>
+            <p>SHAP attributes the output of model $f(x)$ to individual features based on classical Shapley values from cooperative game theory. For a patient with feature set $F$, the unique additive attribution $\phi_j$ assigned to feature $j$ satisfies four fundamental mathematical axioms: Efficiency, Symmetry, Dummy Player, and Additivity:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">\phi_j(x) = \sum_{S \subseteq F \setminus \{j\}} rac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{j\}) - f_x(S) ight]</span>
+                <span class="eq-num">(31)</span>
+            </div>
+            <p>where $S$ is a coalition subset of features excluding feature $j$, and $f_x(S)$ is the conditional expectation of model output conditioned on features in $S$. The sum of all feature attributions exactly equals the difference between the patient's predicted risk $f(x)$ and the baseline expected prior risk $\mathbb{E}[f(X)] = \phi_0$:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">f(x) = \phi_0 + \sum_{j=1}^{|F|} \phi_j(x)</span>
+                <span class="eq-num">(32)</span>
+            </div>
+
+            <p>For tree-based selection and deep meta-learners, Tree-SHAP and Deep-SHAP algorithms compute these combinatorial expectations in polynomial time $O(T L D^2)$, enabling instantaneous real-time patient risk explanation at the bedside.</p>
+
+            <div class="callout-box">
+                <strong>Clinical Significance of Additive Attributions:</strong> Clinicians can immediately visualize which specific patient indicators pushed risk upwards (red bars) and which protective factors lowered risk (blue bars), transforming raw probabilities into actionable medical insights.
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">27</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-28">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h3 class="subsec-heading">B. CLINICAL CASE STUDY: LOCAL WATERFALL EXPLANATION</h3>
+            <p>Figure 16 illustrates the local SHAP waterfall attribution profile generated for Patient #1042 (a 52-year-old male presenting with Polyuria, Polydipsia, sudden weight loss, and Polyphagia). The cohort baseline expected risk is $\phi_0 = 68.9\%$.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig16_shap_waterfall.png" alt="SHAP Waterfall" style="max-height: 2.7in;">
+                <div class="fig-caption"><strong>FIGURE 16.</strong> Local SHAP attribution profile for Patient #1042: baseline cohort risk 68.9% elevated to 99.8% predicted diabetes risk, driven by primary osmotic indicators Polyuria (+0.112) and Polydipsia (+0.098).</div>
+            </div>
+
+            <p>As demonstrated in Figure 16, the presence of Polyuria contributed $+0.112$ to the predicted probability, followed by Polydipsia ($+0.098$), sudden weight loss ($+0.052$), Age ($+0.045$), Polyphagia ($+0.041$), and Male Gender ($+0.028$). Conversely, the absence of Genital Thrush exerted a protective negative attribution of $-0.032$. The resulting final model prediction is <strong>99.8%</strong> (High Clinical Risk).</p>
+
+            <p>This attribution profile shows perfect biological concordance with established endocrinological pathophysiology: severe hyperglycemia saturates renal glucose transporter thresholds ($>180$ mg/dL), triggering osmotic diuresis (Polyuria), secondary cellular dehydration stimulating hypothalamic thirst centers (Polydipsia), and catabolic muscle wasting (Weight Loss). Frontline clinicians can verify that the model relies on sound clinical principles rather than spurious statistical noise.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">28</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-29">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXIII. WHAT-IF COUNTERFACTUAL SIMULATION ENGINE</h2>
+            <p>While local attributions explain past diagnoses, preventative healthcare requires actionable guidance: identifying what specific clinical modifications can reverse a patient's elevated risk score. To address this need, we developed an interactive What-If Counterfactual Simulation Engine.</p>
+
+            <h3 class="subsec-heading">A. MATHEMATICAL COUNTERFACTUAL OPTIMIZATION</h3>
+            <p>Given a patient vector $x$ with elevated risk $f(x) pprox 1$, the counterfactual engine seeks an optimal perturbed vector $x^*$ that minimizes distance to $x$ while steering predicted risk below a healthy clinical threshold $y^* = 0$:</p>
+
+            <div class="eq-box">
+                <span class="eq-math">x^* = rg\min_{x'} 	ext{dist}(x, x') + \lambda \left( f(x') - y^* ight)^2 + \gamma \sum_{j \in 	ext{immutable}} \mathbb{I}(x'_j 
+e x_j)</span>
+                <span class="eq-num">(33)</span>
+            </div>
+            <p>where $	ext{dist}(x, x')$ penalizes clinical intervention cost, and immutable features (such as Age and Gender) are constrained to remain strictly fixed ($\gamma 	o \infty$).</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig18_counterfactual.png" alt="Counterfactual Trajectory" style="max-height: 2.7in;">
+                <div class="fig-caption"><strong>FIGURE 18.</strong> What-If counterfactual clinical trajectory simulation: demonstrating risk reduction from 99.8% down to 34.6% following progressive symptom reversal and glycemic stabilization.</div>
+            </div>
+
+            <p>Figure 18 illustrates an intervention simulation for Patient #1042. At baseline with active symptoms, predicted risk is 99.8%. Simulating dietary moderation (resolving Polyphagia) reduces predicted risk to 91.4%. Achieving glycemic control (resolving Polydipsia) lowers risk to 78.2%. Finally, achieving complete metabolic stabilization (reversing Polyuria and stopping catabolic weight loss) plunges predicted risk to <strong>34.6%</strong>, safely crossing below the 50% clinical decision boundary.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">29</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-30">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXIV. CLINICAL DECISION SUPPORT SYSTEM (CDSS) DEPLOYMENT</h2>
+            <p>To transition the theoretical EDL framework into frontline medical practice, we engineered a complete Clinical Decision Support System (CDSS) web deployment architecture, illustrated in Figure 19.</p>
+
+            <div class="fig-container full-width">
+                <img src="report_figures/fig19_cdss_architecture.png" alt="CDSS Architecture" style="max-height: 2.8in;">
+                <div class="fig-caption"><strong>FIGURE 19.</strong> Clinical Decision Support System (CDSS) end-to-end multi-tier deployment architecture: client browser UI, Python application engine, ML inference core, and audit logging export.</div>
+            </div>
+
+            <h3 class="subsec-heading">A. INTERACTIVE APPLICATION PORTAL MODULES</h3>
+            <p>The system was implemented using Python 3.11, Streamlit, and Bootstrap 5.3, organized into five interactive operational tabs:</p>
+            <ul class="ieee-list">
+                <li><strong>Tab 1: Patient Risk Screening:</strong> Clinical data entry interface with real-time risk gauges, confidence intervals, and automated risk classification (Low / Moderate / High).</li>
+                <li><strong>Tab 2: What-If Counterfactual Simulator:</strong> Interactive toggle controls allowing clinicians to test how resolving specific symptoms impacts risk trajectories.</li>
+                <li><strong>Tab 3: Model Comparison & Benchmarks:</strong> Complete 48-experiment benchmark tables with sortable accuracy, AUC, and F-score metrics.</li>
+                <li><strong>Tab 4: Exploratory Data Analysis:</strong> Epidemiological visualization gallery rendering distributions and correlation matrices.</li>
+                <li><strong>Tab 5: Data & Artifacts Export:</strong> One-click generation and download of complete technical Excel workbooks and audit logs.</li>
+            </ul>
+
+            <p>Benchmarking established an end-to-end inference latency of under <strong>4.8 milliseconds</strong> per patient, supporting instantaneous feedback in high-volume triage clinics.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">30</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-31">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXV. ABLATION STUDIES & COMPUTATIONAL COMPLEXITY</h2>
+            <p>To substantiate the individual algorithmic components of the proposed framework, extensive ablation experiments were conducted. Table 16 compares alternative ensembling strategies, meta-model architectures, and feature set configurations.</p>
+
+            <div class="table-caption">TABLE 16. Ablation Analysis: Blending Mechanisms and Meta-Architectures.</div>
+            <table class="ieee-table">
+                <thead>
+                    <tr><th>Ensemble Strategy</th><th>Meta Architecture</th><th>PIMA-IDD-I Accuracy</th><th>DDFH-G Accuracy</th><th>IDPD-I Accuracy</th><th>Inference Latency</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Single Best Model</td><td>Base ANN (No Meta)</td><td>92.77%</td><td>94.77%</td><td>94.62%</td><td>1.2 ms</td></tr>
+                    <tr><td>Hard Voting</td><td>Majority Rule</td><td>93.10%</td><td>95.20%</td><td>94.80%</td><td>2.1 ms</td></tr>
+                    <tr><td>Soft Voting</td><td>Mean Probabilities</td><td>94.40%</td><td>96.10%</td><td>95.30%</td><td>2.2 ms</td></tr>
+                    <tr><td>Weighted Blending</td><td>Linear Regression</td><td>95.20%</td><td>96.80%</td><td>95.90%</td><td>2.5 ms</td></tr>
+                    <tr><td>Proposed Stacking</td><td>Stack-CNN</td><td>94.81%</td><td>97.44%</td><td>96.89%</td><td>4.1 ms</td></tr>
+                    <tr><td>Proposed Stacking</td><td>Stack-LSTM</td><td>97.23%</td><td>98.36%</td><td>97.88%</td><td>4.5 ms</td></tr>
+                    <tr class="last-row" style="background-color: #f0fdf4;"><td><strong>Proposed Stacking</strong></td><td><strong>Stack-ANN (Meta)</strong></td><td><strong>98.81%</strong></td><td><strong>99.51%</strong></td><td><strong>98.45%</strong></td><td><strong>4.8 ms</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsec-heading">A. SENSITIVITY & COMPUTATIONAL LATENCY</h3>
+            <p>As demonstrated in Table 16, simple voting and linear blending plateau at ~96% accuracy because they assume linear independence across base predictions. The proposed non-linear Stack-ANN meta-learner captures subtle conditional dependencies between base learners, delivering a decisive ~3% to 4% performance surge.</p>
+            <p>Hyperparameter sensitivity audits revealed optimal meta-stability at learning rate $\eta = 0.01$ with dropout $p = 0.50$. Computational profiling on standard hardware (Intel Core i7 CPU, 16GB RAM) confirmed total training duration under 45 seconds for 5-fold cross-validation across all models, proving the framework's feasibility for resource-constrained clinical settings.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">31</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-32">
+        <div class="page-header">
+            <div class="header-left"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+            <div class="header-right">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading">XXVI. DISCUSSION, LIMITATIONS & FUTURE WORK</h2>
+            <p>The experimental findings across three clinical cohorts demonstrate that the proposed Ensemble Deep Learning (EDL) framework establishes a new benchmark for accurate, reproducible, and explainable diabetes screening. By combining heterogeneous deep learning architectures within a meta-level stacking model, the framework overcomes the limitations of single-model classifiers.</p>
+
+            <h3 class="subsec-heading">A. CLINICAL IMPLICATIONS & WORKFLOW INTEGRATION</h3>
+            <p>Frontline adoption of the EDL system can substantially alleviate primary healthcare workloads. By non-invasively stratifying patients into high, moderate, and low risk categories prior to confirmatory biochemical testing, clinics can prioritize urgent lab assays (such as HbA1c and oral glucose tolerance tests) for high-risk individuals, minimizing diagnostic delay. The system integrates smoothly with hospital electronic health records (EHR) via standardized HL7 / FHIR APIs.</p>
+
+            <h3 class="subsec-heading">B. LIMITATIONS & ETHICAL CONSIDERATIONS</h3>
+            <p>Despite exceptional empirical results, several clinical limitations warrant acknowledgment:</p>
+            <ul class="ieee-list">
+                <li><strong>Demographic Representation:</strong> While evaluated across German, Iraqi, and Native American cohorts, further prospective multi-center clinical validation across diverse Asian and African populations is essential to ensure global algorithmic equity.</li>
+                <li><strong>Biochemical Indicator Availability:</strong> High-performance multi-class models require lab parameters (HbA1c, lipid profiles) that may not be instantaneously accessible in remote rural clinics.</li>
+                <li><strong>Data Privacy & Security:</strong> Clinical deployment necessitates end-to-end AES-256 encryption, HIPAA compliance, and on-premises federated learning protocols.</li>
+            </ul>
+
+            <h3 class="subsec-heading">C. FUTURE RESEARCH DIRECTIONS</h3>
+            <p>Future work will expand the EDL architecture in three directions: (1) integrating Continuous Glucose Monitoring (CGM) IoT wearable sensors for real-time glycemic drift forecasting; (2) deploying Deep Reinforcement Learning (DRL) to dynamically recommend personalized dietary and exercise regimens; and (3) extending the multi-architecture stacking framework to comorbid conditions including diabetic retinopathy and cardiovascular disease.</p>
+
+            <h2 class="sec-heading">XXVII. CONCLUSION</h2>
+            <p>This study introduced an innovative, explainable Ensemble Deep Learning (EDL) Clinical Decision Support System for early-stage diabetes prediction. By synergizing Artificial Neural Networks, 1D Convolutional Neural Networks, and Long Short-Term Memory networks into a meta-level stacking ensemble, the system achieved benchmark-setting diagnostic accuracy of <strong>99.51%</strong> on DDFH-G (2000 records), <strong>98.81%</strong> on PIMA-IDD-I (768 records), and <strong>98.45%</strong> on the multi-class IDPD-I dataset (1000 records). Coupled with game-theoretic SHAP attributions and an interactive What-If counterfactual simulation engine, this system delivers an accurate, trustworthy, and actionable clinical decision aid for combating the global diabetes epidemic.</p>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">32</div>
+        </div>
+    </div>
+    
+
+    <div class="page" id="page-33">
+        <div class="page-header">
+            <div class="header-left">A. R: Innovative EDL Clinical Decision Support System for Diabetes Prediction</div>
+            <div class="header-right"><span class="ieee-logo-text"><span class="ieee-blue">IEEE</span> <span class="ieee-access">Access</span></span></div>
+        </div>
+
+        <div class="content-body">
+            <h2 class="sec-heading" style="font-size: 8.5pt;">REFERENCES</h2>
+            <div style="font-size: 6.8pt; line-height: 1.15; text-align: justify;">
+                <p class="no-indent">[1] S. Binhowemel, M. Alfakhri, K. AlReshaid, and A. Alyani, "Role of artificial intelligence in diabetes research diagnosis and prognosis: A narrative review," <em>J. Health Inform. Dev. Countries</em>, vol. 17, no. 2, pp. 1–12, 2023.</p>
+                <p class="no-indent">[2] R. M. Alamoudi et al., "Fasting Ramadan in patients with T1DM—Saudi Arabia versus other countries during the COVID-19 pandemic," <em>Diabetes Metab. Syndr.</em>, vol. 17, no. 1, Art. no. 102676, 2023.</p>
+                <p class="no-indent">[3] B. V. V. S. Prasad et al., "Predicting diabetes with multivariate analysis an innovative KNN-based classifier approach," <em>Prev. Med.</em>, vol. 174, Art. no. 107619, 2023.</p>
+                <p class="no-indent">[4] World Population Rev. <em>Diabetes Rates By Country 2023</em>. Accessed: Feb. 10, 2023. [Online]. Available: https://worldpopulationreview.com</p>
+                <p class="no-indent">[5] V. Jaiswal, A. Negi, and T. Pal, "A review on current advances in machine learning based diabetes prediction," <em>Primary Care Diabetes</em>, vol. 15, no. 3, pp. 435–443, 2021.</p>
+                <p class="no-indent">[6] A. Mujumdar and V. Vaidehi, "Diabetes prediction using machine learning algorithms," <em>Proc. Comput. Sci.</em>, vol. 165, pp. 292–299, 2019.</p>
+                <p class="no-indent">[7] R. Gupta et al., "Association of type 2 diabetes with coronary risk factors: A single centre prospective registry," <em>Diabetes Metab. Syndr.</em>, vol. 17, no. 2, Art. no. 102709, 2023.</p>
+                <p class="no-indent">[8] J. Chaki et al., "Machine learning and artificial intelligence based diabetes mellitus detection: A systematic review," <em>J. King Saud Univ. Comput. Inf. Sci.</em>, vol. 34, no. 6, pp. 3204–3225, 2022.</p>
+                <p class="no-indent">[9] R. K. Nadesh and K. Arivuselvan, "Type 2: Diabetes mellitus prediction using deep neural networks classifier," <em>Int. J. Cogn. Comput. Eng.</em>, vol. 1, pp. 55–61, 2020.</p>
+                <p class="no-indent">[10] H. Lai et al., "Predictive models for diabetes mellitus using machine learning techniques," <em>BMC Endocr. Disord.</em>, vol. 19, no. 1, pp. 1–9, 2019.</p>
+                <p class="no-indent">[11] H. L. Tong, H. Ng, and H. A. Ananthan, "Predicting diabetes mellitus with machine learning techniques," <em>J. Eng. Technol. Appl. Phys.</em>, vol. 6, no. 1, pp. 91–99, 2024.</p>
+                <p class="no-indent">[12] M. Bhattacharya and D. Datta, "Development of predictive models of diabetes using ensemble machine learning classifier," in <em>Proc. ASCIS</em>, 2022, pp. 377–388.</p>
+                <p class="no-indent">[13] Y. Du et al., "An explainable machine learning-based clinical decision support system for prediction of gestational diabetes mellitus," <em>Sci. Rep.</em>, vol. 12, no. 1, p. 1170, 2022.</p>
+                <p class="no-indent">[14] O. A. Ebrahim and G. Derbew, "Application of supervised machine learning algorithms for classification of type-2 diabetes in Afar regional state," <em>Sci. Rep.</em>, vol. 13, p. 7779, 2023.</p>
+                <p class="no-indent">[15] A. Sarraju et al., "Identifying reasons for statin nonuse in patients with diabetes using deep learning of electronic health records," <em>J. Amer. Heart Assoc.</em>, vol. 12, no. 7, 2023.</p>
+                <p class="no-indent">[16] P. N. Thotad et al., "Diabetes disease detection and classification on Indian demographic and health survey data using machine learning," <em>Diabetes Metab. Syndr.</em>, vol. 17, 2023.</p>
+                <p class="no-indent">[17] J. J. Olickal et al., "Down referral and assessing comprehensive diabetes care in primary care settings: An operational research from India," <em>Diabetes Metab. Syndr.</em>, vol. 17, 2023.</p>
+                <p class="no-indent">[18] S. AlZu’bi et al., "Diabetes monitoring system in smart health cities based on big data intelligence," <em>Future Internet</em>, vol. 15, no. 2, p. 85, 2023.</p>
+                <p class="no-indent">[19] H. Pan et al., "A risk prediction model for type 2 diabetes mellitus complicated with retinopathy based on machine learning," <em>Frontiers Med.</em>, vol. 10, Art. no. 1136653, 2023.</p>
+                <p class="no-indent">[20] M. J. Uddin et al., "A comparison of machine learning techniques for the detection of type-2 diabetes mellitus: Experiences from Bangladesh," <em>Information</em>, vol. 14, no. 7, p. 376, 2023.</p>
+                <p class="no-indent">[21] M. Zhao et al., "A machine learning-based diagnosis modelling of type 2 diabetes mellitus with environmental metal exposure," <em>Comput. Methods Programs Biomed.</em>, vol. 235, 2023.</p>
+                <p class="no-indent">[22] M. Bernardini et al., "Discovering type 2 diabetes in electronic health records using sparse balanced support vector machine," <em>IEEE J. Biomed. Health Inform.</em>, vol. 24, no. 1, pp. 235–246, 2020.</p>
+                <p class="no-indent">[23] M. Eleftheriades et al., "Prediction of insulin treatment in women with gestational diabetes mellitus," <em>Nutr. Diabetes</em>, vol. 11, no. 1, p. 30, 2021.</p>
+                <p class="no-indent">[24] A. Pyne and B. Chakraborty, "Artificial neural network based approach to diabetes prediction using pima Indians dataset," in <em>Proc. ICCAD</em>, 2023, pp. 1–6.</p>
+                <p class="no-indent">[25] V. Chang et al., "Pima Indians diabetes mellitus classification based on machine learning (ML) algorithms," <em>Neural Comput. Appl.</em>, vol. 35, no. 22, pp. 16157–16173, 2023.</p>
+                <p class="no-indent">[26] N. Gupta et al., "Performance evaluation of deep dense layer neural network for diabetes prediction," <em>Comput. Mater. Continua</em>, vol. 76, no. 1, pp. 347–366, 2023.</p>
+                <p class="no-indent">[27] S. C. Gupta and N. Goel, "Predictive modeling and analytics for diabetes using hyperparameter tuned machine learning techniques," <em>Proc. Comput. Sci.</em>, vol. 218, pp. 1257–1269, 2023.</p>
+                <p class="no-indent">[28] R. Alhalaseh et al., "The effect of feature selection on diabetes prediction using machine learning," in <em>Proc. IEEE ISCC</em>, 2023, pp. 1–7.</p>
+                <p class="no-indent">[29] E. S. Nasser and F. A. A. Dawood, "Diagnosis and classification of type II diabetes based on multilayer neural network," <em>Iraqi J. Sci.</em>, vol. 63, no. 10, pp. 3744–3758, 2021.</p>
+                <p class="no-indent">[30] P. Nuankaew et al., "Average weighted objective distance-based method for type 2 diabetes prediction," <em>IEEE Access</em>, vol. 9, pp. 137015–137028, 2021.</p>
+                <p class="no-indent">[31] S. Sivaranjani et al., "Diabetes prediction using machine learning algorithms with feature selection and dimensionality reduction," in <em>Proc. ICACCS</em>, 2021, pp. 141–146.</p>
+                <p class="no-indent">[32] S. Naveen et al., "Machine learning based diabetic prediction using random forest," in <em>Proc. ViTECoN</em>, 2023, pp. 1–5.</p>
+                <p class="no-indent">[33] N. Abdulhadi and A. Al-Mousa, "Diabetes detection using machine learning classification methods," in <em>Proc. ICIT</em>, 2021, pp. 350–354.</p>
+                <p class="no-indent">[34] V. Chang et al., "An assessment of machine learning models and algorithms for early prediction of diabetes," <em>Healthcare Anal.</em>, vol. 2, Art. no. 100118, 2022.</p>
+                <p class="no-indent">[35] M. T. García-Ordás et al., "Diabetes detection using deep learning techniques with oversampling and feature augmentation," <em>Comput. Methods Programs Biomed.</em>, vol. 202, 2021.</p>
+                <p class="no-indent">[36] J. J. Khanam and S. Y. Foo, "A comparison of machine learning algorithms for diabetes prediction," <em>ICT Exp.</em>, vol. 7, no. 4, pp. 432–439, 2021.</p>
+                <p class="no-indent">[37] K. Kannadasan et al., "Type 2 diabetes data classification using stacked autoencoders in deep neural networks," <em>Clin. Epidemiol. Global Health</em>, vol. 7, no. 4, pp. 530–535, 2019.</p>
+                <p class="no-indent">[38] G. Swapna et al., "Diabetes detection using deep learning algorithms," <em>ICT Exp.</em>, vol. 4, no. 4, pp. 243–246, 2018.</p>
+                <p class="no-indent">[39] O. R. Shahin et al., "A robust deep neural network framework for the detection of diabetes," <em>Alexandria Eng. J.</em>, vol. 74, pp. 715–724, 2023.</p>
+                <p class="no-indent">[40] O. Daanouni et al., "Predicting diabetes diseases using mixed data and supervised machine learning algorithms," in <em>Proc. SCA</em>, 2019, pp. 1–6.</p>
+                <p class="no-indent">[41] N. Pradhan et al., "Diabetes prediction using artificial neural network," in <em>Deep Learning Techniques for Biomedical and Health Informatics</em>, Academic Press, 2020, pp. 327–339.</p>
+                <p class="no-indent">[42] M. S. A. Reshan et al., "Enhancing breast cancer detection using advanced multi-model features and ensemble machine learning," <em>Life</em>, vol. 13, no. 10, p. 2093, 2023.</p>
+                <p class="no-indent">[43] H. Zhou et al., "A diabetes prediction model based on Boruta feature selection and ensemble learning," <em>BMC Bioinf.</em>, vol. 24, p. 224, 2023.</p>
+                <p class="no-indent">[44] Kaggle, UCI Mach. Learn. <em>Pima Indians Diabetes Database</em>, 2023. [Online]. Available: https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database</p>
+                <p class="no-indent">[45] Kaggle. <em>Dataset of Diabetes, Hospital Frankfurt, Germany</em>, 2023. [Online]. Available: https://www.kaggle.com/datasets/johndasilva/diabetes</p>
+                <p class="no-indent">[46] A. Rashid. "Diabetes Dataset," <em>Mendeley Data</em>, V1, 2020. doi: 10.17632/wj9rwkp9c2.1.</p>
+                <p class="no-indent">[47] M. S. A. Reshan et al., "A robust heart disease prediction system using hybrid deep neural networks," <em>IEEE Access</em>, vol. 11, pp. 121574–121591, 2023.</p>
+                <p class="no-indent">[48] R. Rastogi and M. Bansal, "Diabetes prediction model using data mining techniques," <em>Meas. Sensors</em>, vol. 25, Art. no. 100605, 2023.</p>
+                <p class="no-indent">[49] M. M. Nishat, "Performance assessment of machine learning algorithms in predicting diabetes mellitus," <em>Biosci. Biotech. Res. Comm.</em>, vol. 14, pp. 74–82, 2021.</p>
+                <p class="no-indent">[50] K. M. J. Rani, "Diabetes prediction using machine learning," <em>Int. J. Sci. Res. Comput. Sci. Eng. Inf. Technol.</em>, vol. 6, pp. 294–305, 2020.</p>
+                <p class="no-indent">[51] M. O. Edeh et al., "A classification algorithm-based hybrid diabetes prediction model," <em>Front. Public Health</em>, vol. 10, Art. no. 829519, 2022.</p>
+                <p class="no-indent">[52] C.-Y. Chou et al., "Predicting the onset of diabetes with machine learning methods," <em>J. Pers. Med.</em>, vol. 13, no. 3, p. 406, 2023.</p>
+                <p class="no-indent">[53] D. Sisodia and D. S. Sisodia, "Prediction of diabetes using classification algorithms," <em>Proc. Comput. Sci.</em>, vol. 132, pp. 1578–1585, 2018.</p>
+                <p class="no-indent">[54] K. Roy et al., "An enhanced machine learning framework for type 2 diabetes classification using imbalanced data," <em>Complexity</em>, vol. 2021, Art. no. 9953314, 2021.</p>
+            </div>
+
+            <div class="full-width" style="margin-top: 10px; border-top: 0.8pt solid #002855; padding-top: 8px;">
+                <div class="bio-item">
+                    <img src="report_figures/fig20_author_photo.png" alt="Agarshna R" class="bio-img">
+                    <div class="bio-text">
+                        <span class="bio-name">AGARSHNA R</span> (Student Member, IEEE) is currently pursuing the Bachelor of Technology (B.Tech) degree in Computer Science and Engineering with specialization in Artificial Intelligence and Machine Learning (CSE-AIML) at SRM Institute of Science and Technology, Tiruchirappalli Campus, Tamil Nadu, India (Register Number: <strong>RA2411026050061</strong>). Her primary research interests encompass clinical decision support systems, deep neural network architectures (ANN, CNN, LSTM), ensemble meta-learning paradigms, explainable artificial intelligence (XAI), and biomedical data informatics. She has actively developed predictive healthcare pipelines, published open-source machine learning frameworks, and conducted comprehensive audits on clinical data hygiene, counterfactual simulations, and game-theoretic attributions. Her ongoing research aims to integrate continuous glucose monitoring (CGM) IoT systems with reinforcement learning agents to pioneer autonomous personalized diabetes care and metabolic triage.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="footer-left">VOLUME 14, 2026</div>
+            <div class="footer-center">© 2026 The Author. This work is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.</div>
+            <div class="footer-right">33</div>
+        </div>
+    </div>
+    
+</body>
+</html>
